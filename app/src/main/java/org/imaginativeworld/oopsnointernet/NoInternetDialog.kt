@@ -148,10 +148,6 @@ class NoInternetDialog private constructor(
         no_internet_img_2.animation = AnimationUtils.loadAnimation(activity, R.anim.wave_2)
     }
 
-    // ----------------------------------------------------------------
-    // Listeners
-    // ----------------------------------------------------------------
-
     override fun onClick(v: View?) {
 
         v?.also {
