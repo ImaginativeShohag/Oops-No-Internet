@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Oops! No Internet!</string>
+    <string name="default_title">No Internet</string>
+    <string name="default_message">Check your Internet connection and try again</string>
+    <string name="please_turn_on">Please turn on</string>
+    <string name="wifi">Wifi</string>
+    <string name="mobile_data">Mobile data</string>
+</resources>
