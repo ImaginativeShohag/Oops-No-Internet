@@ -100,7 +100,7 @@ class NoInternetDialog private constructor(
 
             return connectivityManagerCallback
         } else {
-            throw IllegalAccessError("Should not happened")
+            throw IllegalAccessError("This should not happened")
         }
     }
 

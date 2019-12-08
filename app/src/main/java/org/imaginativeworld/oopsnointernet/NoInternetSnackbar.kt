@@ -125,7 +125,7 @@ class NoInternetSnackbar private constructor(
 
             return connectivityManagerCallback
         } else {
-            throw IllegalAccessError("Should not happened")
+            throw IllegalAccessError("This should not happened!")
         }
     }
 
@@ -165,10 +165,10 @@ class NoInternetSnackbar private constructor(
         var indefinite = true
         var connectionCallback: ConnectionCallback? = null
 
-        var noInternetConnectionMessage = "No active Internet connection!"
-        var snackbarActionText = "Settings"
+        var noInternetConnectionMessage = activity.getString(R.string.no_active_internet_connection)
+        var snackbarActionText = activity.getString(R.string.settings)
         var showActionToDismiss = false
-        var snackbarDismissActionText = "Ok"
+        var snackbarDismissActionText = activity.getString(R.string.ok)
 
         fun build(): NoInternetSnackbar {
 
