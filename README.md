@@ -4,7 +4,6 @@ A simple no Internet dialog and snackbar, which will automatically
 appear and disappear based on Internet connectivity status.
 
 [![](https://jitpack.io/v/ImaginativeShohag/Oops-No-Internet.svg)](https://jitpack.io/#ImaginativeShohag/Oops-No-Internet)
-[![API](https://img.shields.io/badge/API-14%2B-yellow.svg?style=flat-square)](https://android-arsenal.com/api?level=21)
 
 ## Usage
 
@@ -33,6 +32,8 @@ dependencies {
     implementation 'com.github.ImaginativeShohag:Oops-No-Internet:1.0.0'
 }
 ```
+
+**Note 0.** Minimum SDK for this library is API 21 (Android 5.0 Lollipop).
 
 **Note 1.** Your application have to use **AndroidX** to use this library.
 
@@ -192,7 +193,7 @@ This library is inspired by [NoInternetDialog](https://github.com/appwise-labs/N
 
 ### 1.0.0
 
-The initial release of the library
+The initial release of the library.
 
 ## Licence
 
