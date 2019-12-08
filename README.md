@@ -185,9 +185,10 @@ public class Main2Activity extends AppCompatActivity {
 ```
 
 
-## Inspiration
+## Credits
 
 This library is inspired by [NoInternetDialog](https://github.com/appwise-labs/NoInternetDialog).
+Library name credit goes to **Fahima Lamia Neha**.
 
 ## Changelog
 
