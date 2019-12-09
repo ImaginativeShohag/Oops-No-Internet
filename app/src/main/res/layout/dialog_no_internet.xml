@@ -16,6 +16,17 @@
         android:layout_gravity="center">
 
         <ImageView
+            android:id="@+id/img_airplane"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="162dp"
+            android:tint="@color/flat_grey_normal_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_airplane" />
+
+        <ImageView
             android:id="@+id/no_internet_img_1"
             android:layout_width="128dp"
             android:layout_height="128dp"

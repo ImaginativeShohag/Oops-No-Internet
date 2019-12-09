@@ -13,6 +13,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.dialog_no_internet.*
@@ -151,6 +152,35 @@ class NoInternetDialog private constructor(
     private fun initAnimations() {
         no_internet_img_1.animation = AnimationUtils.loadAnimation(activity, R.anim.wave_1)
         no_internet_img_2.animation = AnimationUtils.loadAnimation(activity, R.anim.wave_2)
+
+        if (NoInternetUtils.isAirplaneModeOn(activity)) {
+            img_airplane.visibility = View.VISIBLE
+
+            val airplaneStart = AnimationUtils.loadAnimation(activity, R.anim.airplane_start)
+            val airplaneEnd = AnimationUtils.loadAnimation(activity, R.anim.airplane_end)
+
+            airplaneStart.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationRepeat(animation: Animation?) {}
+                override fun onAnimationStart(animation: Animation?) {}
+
+                override fun onAnimationEnd(animation: Animation?) {
+                    img_airplane.startAnimation(airplaneEnd)
+                }
+            })
+
+            airplaneEnd.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationRepeat(animation: Animation?) {}
+                override fun onAnimationStart(animation: Animation?) {}
+
+                override fun onAnimationEnd(animation: Animation?) {
+                    img_airplane.startAnimation(airplaneStart)
+                }
+            })
+
+            img_airplane.animation = airplaneStart
+        } else {
+            img_airplane.visibility = View.GONE
+        }
     }
 
     override fun onClick(v: View?) {
@@ -218,11 +248,6 @@ class NoInternetDialog private constructor(
         var pleaseTurnOnText = activity.getString(R.string.please_turn_on)
         var wifiOnButtonText = activity.getString(R.string.wifi)
         var mobileDataOnButtonText = activity.getString(R.string.mobile_data)
-
-        var airplaneModeOnTitle = activity.getString(R.string.default_title)
-        var airplaneModeOnMessage = activity.getString(R.string.default_message)
-        var airplaneModeOffButtonText = activity.getString(R.string.mobile_data)
-        var showAirplaneModeOffButtons = true
 
         fun build(): NoInternetDialog {
             val dialog = NoInternetDialog(

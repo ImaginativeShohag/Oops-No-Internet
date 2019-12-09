@@ -18,6 +18,14 @@ object NoInternetUtils {
         return activeNetwork != null
     }
 
+    fun isAirplaneModeOn(context: Context): Boolean {
+        return Settings.System.getInt(
+            context.contentResolver,
+            Settings.Global.AIRPLANE_MODE_ON,
+            0
+        ) != 0
+    }
+
     fun hasActiveInternetConnection(): Boolean {
         try {
             val urlConnection =
@@ -33,14 +41,6 @@ object NoInternetUtils {
             e.printStackTrace()
         }
         return false
-    }
-
-    fun isAirplaneModeOn(context: Context): Boolean {
-        return Settings.System.getInt(
-            context.contentResolver,
-            Settings.Global.AIRPLANE_MODE_ON,
-            0
-        ) != 0
     }
 
     fun turnOnMobileData(context: Context) {
