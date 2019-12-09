@@ -29,7 +29,7 @@ dependencies {
     // Material Components for Android
     implementation 'com.google.android.material:material:1.0.0'
 
-    implementation 'com.github.ImaginativeShohag:Oops-No-Internet:v1.0.0'
+    implementation 'com.github.ImaginativeShohag:Oops-No-Internet:v1.0.1'
 }
 ```
 
@@ -188,9 +188,13 @@ public class Main2Activity extends AppCompatActivity {
 ## Credits
 
 This library is inspired by [NoInternetDialog](https://github.com/appwise-labs/NoInternetDialog).
-Library name credit goes to **Fahima Lamia Neha**.
+Library name credit goes to Fahima Lamia Neha.
 
 ## Changelog
+
+### 1.0.1
+
+Airplane mode animation added to the dialog and known bugs fixed.
 
 ### 1.0.0
 
