@@ -14,6 +14,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
+import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.dialog_no_internet.*
 
 class NoInternetDialog private constructor(
@@ -135,6 +136,10 @@ class NoInternetDialog private constructor(
             tv_please_turn_on.visibility = View.GONE
             btn_wifi_on.visibility = View.GONE
             btn_mobile_on.visibility = View.GONE
+
+            val params = tv_message.layoutParams as ConstraintLayout.LayoutParams
+            params.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID
+            tv_message.requestLayout()
         }
     }
 
@@ -213,6 +218,11 @@ class NoInternetDialog private constructor(
         var pleaseTurnOnText = activity.getString(R.string.please_turn_on)
         var wifiOnButtonText = activity.getString(R.string.wifi)
         var mobileDataOnButtonText = activity.getString(R.string.mobile_data)
+
+        var airplaneModeOnTitle = activity.getString(R.string.default_title)
+        var airplaneModeOnMessage = activity.getString(R.string.default_message)
+        var airplaneModeOffButtonText = activity.getString(R.string.mobile_data)
+        var showAirplaneModeOffButtons = true
 
         fun build(): NoInternetDialog {
             val dialog = NoInternetDialog(
