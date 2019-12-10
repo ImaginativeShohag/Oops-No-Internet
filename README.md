@@ -29,7 +29,7 @@ dependencies {
     // Material Components for Android
     implementation 'com.google.android.material:material:1.0.0'
 
-    implementation 'com.github.ImaginativeShohag:Oops-No-Internet:v1.1.0'
+    implementation 'com.github.ImaginativeShohag:Oops-No-Internet:v1.1.1'
 }
 ```
 
@@ -205,11 +205,15 @@ Library name credit goes to Fahima Lamia Neha.
 
 ## Changelog
 
+### 1.1.1
+
+Small change in check internet.
+
 ### 1.1.0
 
-\+ Airplane mode button added to the dialog
+\+ Airplane mode button added to the dialog.
 
-\+ The snackbar text will be updated based on airplane mode
+\+ The snackbar text will be updated based on airplane mode.
 
 ### 1.0.1
 

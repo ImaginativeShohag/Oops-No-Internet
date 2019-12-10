@@ -15,7 +15,7 @@ object NoInternetUtils {
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork = connectivityManager.activeNetworkInfo
 
-        return activeNetwork != null
+        return activeNetwork?.isConnected == true
     }
 
     fun isAirplaneModeOn(context: Context): Boolean {
