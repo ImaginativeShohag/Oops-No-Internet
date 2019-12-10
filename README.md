@@ -29,7 +29,7 @@ dependencies {
     // Material Components for Android
     implementation 'com.google.android.material:material:1.0.0'
 
-    implementation 'com.github.ImaginativeShohag:Oops-No-Internet:v1.0.1'
+    implementation 'com.github.ImaginativeShohag:Oops-No-Internet:v1.1.0'
 }
 ```
 
@@ -79,6 +79,12 @@ class MainActivity : AppCompatActivity() {
                 pleaseTurnOnText = "Please turn on" // Optional
                 wifiOnButtonText = "Wifi" // Optional
                 mobileDataOnButtonText = "Mobile data" // Optional
+
+                onAirplaneModeTitle = "No Internet" // Optional
+                onAirplaneModeMessage = "You have turned on the airplane mode." // Optional
+                pleaseTurnOffText = "Please turn off" // Optional
+                airplaneModeOffButtonText = "Airplane mode" // Optional
+                showAirplaneModeOffButtons = true // Optional
             }
             .build()
 
@@ -93,6 +99,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     indefinite = true // Optional
                     noInternetConnectionMessage = "No active Internet connection!" // Optional
+                    onAirplaneModeMessage = "You have turned on the airplane mode!" // Optional
                     snackbarActionText = "Settings" // Optional
                     showActionToDismiss = false // Optional
                     snackbarDismissActionText = "OK" // Optional
@@ -139,11 +146,17 @@ public class Main2Activity extends AppCompatActivity {
         });
         builder1.setCancelable(false); // Optional
         builder1.setNoInternetConnectionTitle("No Internet"); // Optional
-        builder1.setNoInternetConnectionMessage("Check your Internet connection and try again."); // Optional
+        builder1.setNoInternetConnectionMessage("Check your Internet connection and try again"); // Optional
         builder1.setShowInternetOnButtons(true); // Optional
         builder1.setPleaseTurnOnText("Please turn on"); // Optional
         builder1.setWifiOnButtonText("Wifi"); // Optional
         builder1.setMobileDataOnButtonText("Mobile data"); // Optional
+
+        builder1.setOnAirplaneModeTitle("No Internet"); // Optional
+        builder1.setOnAirplaneModeMessage("You have turned on the airplane mode."); // Optional
+        builder1.setPleaseTurnOffText("Please turn off"); // Optional
+        builder1.setAirplaneModeOffButtonText("Airplane mode"); // Optional
+        builder1.setShowAirplaneModeOffButtons(true); // Optional
 
         noInternetDialog = builder1.build();
 
@@ -159,7 +172,7 @@ public class Main2Activity extends AppCompatActivity {
         });
         builder2.setIndefinite(true); // Optional
         builder2.setNoInternetConnectionMessage("No active Internet connection!"); // Optional
-        builder2.setNoInternetConnectionMessage("Check your Internet connection and try again"); // Optional
+        builder2.setOnAirplaneModeMessage("You have turned on the airplane mode!"); // Optional
         builder2.setSnackbarActionText("Settings");
         builder2.setShowActionToDismiss(false);
         builder2.setSnackbarDismissActionText("OK");
