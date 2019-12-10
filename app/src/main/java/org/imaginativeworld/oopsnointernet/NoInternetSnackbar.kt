@@ -16,6 +16,7 @@ class NoInternetSnackbar private constructor(
     private val parent: ViewGroup,
     private val indefinite: Boolean,
     private val noInternetConnectionMessage: String,
+    private val onAirplaneModeMessage: String,
     private val snackbarActionText: String,
     private val showActionToDismiss: Boolean,
     private val snackbarDismissActionText: String
@@ -38,13 +39,31 @@ class NoInternetSnackbar private constructor(
         initReceivers()
     }
 
-    fun initViews() {
+    private fun initViews() {
         snackBar = Snackbar.make(
             parent,
             noInternetConnectionMessage,
             if (indefinite) Snackbar.LENGTH_INDEFINITE else Snackbar.LENGTH_LONG
         )
+    }
 
+    private fun updateViews() {
+        if (NoInternetUtils.isAirplaneModeOn(activity)) {
+
+            snackBar.setText(onAirplaneModeMessage)
+
+            updateActionButton(true)
+
+        } else {
+
+            snackBar.setText(noInternetConnectionMessage)
+
+            updateActionButton(false)
+
+        }
+    }
+
+    private fun updateActionButton(isAirplaneModeOn: Boolean) {
         if (showActionToDismiss) {
 
             snackBar.setAction(
@@ -58,7 +77,11 @@ class NoInternetSnackbar private constructor(
             snackBar.setAction(
                 snackbarActionText
             ) {
-                NoInternetUtils.turnOnMobileData(activity)
+                if (isAirplaneModeOn) {
+                    NoInternetUtils.turnOffAirplaneMode(activity)
+                } else {
+                    NoInternetUtils.turnOnMobileData(activity)
+                }
             }
 
         }
@@ -142,6 +165,9 @@ class NoInternetSnackbar private constructor(
                 override fun hasActiveConnection(hasActiveConnection: Boolean) {
                     if (!hasActiveConnection) {
                         isDismissed = false
+
+                        updateViews()
+
                         snackBar.show()
                     }
                 }
@@ -165,7 +191,9 @@ class NoInternetSnackbar private constructor(
         var indefinite = true
         var connectionCallback: ConnectionCallback? = null
 
-        var noInternetConnectionMessage = activity.getString(R.string.no_active_internet_connection)
+        var noInternetConnectionMessage = activity.getString(R.string.default_snackbar_message)
+        var onAirplaneModeMessage =
+            activity.getString(R.string.default_airplane_mode_snackbar_message)
         var snackbarActionText = activity.getString(R.string.settings)
         var showActionToDismiss = false
         var snackbarDismissActionText = activity.getString(R.string.ok)
@@ -177,6 +205,7 @@ class NoInternetSnackbar private constructor(
                 parent,
                 indefinite,
                 noInternetConnectionMessage,
+                onAirplaneModeMessage,
                 snackbarActionText,
                 showActionToDismiss,
                 snackbarDismissActionText

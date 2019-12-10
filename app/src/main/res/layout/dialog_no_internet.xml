@@ -79,6 +79,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
+        <!-- ================================ -->
+
         <TextView
             android:id="@+id/tv_please_turn_on"
             android:layout_width="0dp"
@@ -94,8 +96,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_message"
-            tools:visibility="visible" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_message" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_wifi_on"
@@ -115,8 +116,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_please_turn_on"
-            tools:visibility="visible" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_please_turn_on" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_mobile_on"
@@ -136,8 +136,61 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/btn_wifi_on"
-            app:layout_constraintTop_toBottomOf="@+id/tv_please_turn_on"
+            app:layout_constraintTop_toBottomOf="@+id/tv_please_turn_on" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_turn_on_internet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="tv_please_turn_on,btn_wifi_on,btn_mobile_on" />
+
+        <!-- ================================ -->
+
+        <TextView
+            android:id="@+id/tv_please_turn_off"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:gravity="center"
+            android:text="@string/please_turn_off"
+            android:textAllCaps="true"
+            android:textColor="@color/flat_grey_dark_1"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_message"
             tools:visibility="visible" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_airplane_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:text="@string/airplane_mode"
+            android:textSize="14sp"
+            app:cornerRadius="100dp"
+            app:icon="@drawable/ic_airplanemode_inactive_24dp"
+            app:iconSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_please_turn_off"
+            tools:visibility="visible" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_turn_off_airplane"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:constraint_referenced_ids="tv_please_turn_off,btn_airplane_off" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

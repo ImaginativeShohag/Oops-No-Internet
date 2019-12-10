@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                 cancelable = false // Optional
                 noInternetConnectionTitle = "No Internet" // Optional
                 noInternetConnectionMessage =
-                    "Check your Internet connection and try again" // Optional
+                    "Check your Internet connection and try again." // Optional
                 showInternetOnButtons = true // Optional
                 pleaseTurnOnText = "Please turn on" // Optional
                 wifiOnButtonText = "Wifi" // Optional
@@ -139,7 +139,7 @@ public class Main2Activity extends AppCompatActivity {
         });
         builder1.setCancelable(false); // Optional
         builder1.setNoInternetConnectionTitle("No Internet"); // Optional
-        builder1.setNoInternetConnectionMessage("Check your Internet connection and try again"); // Optional
+        builder1.setNoInternetConnectionMessage("Check your Internet connection and try again."); // Optional
         builder1.setShowInternetOnButtons(true); // Optional
         builder1.setPleaseTurnOnText("Please turn on"); // Optional
         builder1.setWifiOnButtonText("Wifi"); // Optional

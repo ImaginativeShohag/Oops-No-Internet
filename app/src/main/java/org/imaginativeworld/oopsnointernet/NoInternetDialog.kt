@@ -21,12 +21,19 @@ import kotlinx.android.synthetic.main.dialog_no_internet.*
 class NoInternetDialog private constructor(
     private val activity: Activity,
     private val cancellable: Boolean,
+
     private val noInternetConnectionTitle: String,
     private val noInternetConnectionMessage: String,
     private val showInternetOnButtons: Boolean,
     private val pleaseTurnOnText: String,
     private val wifiOnButtonText: String,
-    private val mobileDataOnButtonText: String
+    private val mobileDataOnButtonText: String,
+
+    private val onAirplaneModeTitle: String,
+    private val onAirplaneModeMessage: String,
+    private val pleaseTurnOffText: String,
+    private val airplaneModeOffButtonText: String,
+    private val showAirplaneModeOffButtons: Boolean
 ) : Dialog(activity), View.OnClickListener {
 
     private val TAG = "NoInternetDialog"
@@ -126,18 +133,64 @@ class NoInternetDialog private constructor(
     }
 
     private fun initViews() {
-        tv_title.text = noInternetConnectionTitle
-        tv_message.text = noInternetConnectionMessage
-
         tv_please_turn_on.text = pleaseTurnOnText
         btn_wifi_on.text = wifiOnButtonText
         btn_mobile_on.text = mobileDataOnButtonText
 
-        if (!showInternetOnButtons) {
-            tv_please_turn_on.visibility = View.GONE
-            btn_wifi_on.visibility = View.GONE
-            btn_mobile_on.visibility = View.GONE
+        tv_please_turn_off.text = pleaseTurnOffText
+        btn_airplane_off.text = airplaneModeOffButtonText
+    }
 
+    private fun updateViews() {
+        if (NoInternetUtils.isAirplaneModeOn(activity)) {
+
+            tv_title.text = onAirplaneModeTitle
+            tv_message.text = onAirplaneModeMessage
+
+            hideNoInternetButtonViews()
+
+            if (showAirplaneModeOffButtons) {
+                showTurnOffAirplaneModeButtonViews()
+            } else {
+                hideTurnOffAirplaneModeButtonViews()
+            }
+
+        } else {
+
+            tv_title.text = noInternetConnectionTitle
+            tv_message.text = noInternetConnectionMessage
+
+            hideTurnOffAirplaneModeButtonViews()
+
+            if (showInternetOnButtons) {
+                showNoInternetButtonViews()
+            } else {
+                hideNoInternetButtonViews()
+            }
+
+        }
+
+        updateMessageLayoutParams()
+    }
+
+    private fun showNoInternetButtonViews() {
+        group_turn_on_internet.visibility = View.VISIBLE
+    }
+
+    private fun hideNoInternetButtonViews() {
+        group_turn_on_internet.visibility = View.GONE
+    }
+
+    private fun showTurnOffAirplaneModeButtonViews() {
+        group_turn_off_airplane.visibility = View.VISIBLE
+    }
+
+    private fun hideTurnOffAirplaneModeButtonViews() {
+        group_turn_off_airplane.visibility = View.GONE
+    }
+
+    private fun updateMessageLayoutParams() {
+        if (!showInternetOnButtons && !showAirplaneModeOffButtons) {
             val params = tv_message.layoutParams as ConstraintLayout.LayoutParams
             params.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID
             tv_message.requestLayout()
@@ -147,6 +200,7 @@ class NoInternetDialog private constructor(
     private fun initListeners() {
         btn_wifi_on.setOnClickListener(this)
         btn_mobile_on.setOnClickListener(this)
+        btn_airplane_off.setOnClickListener(this)
     }
 
     private fun initAnimations() {
@@ -199,6 +253,12 @@ class NoInternetDialog private constructor(
                     NoInternetUtils.turnOnMobileData(context)
 
                 }
+
+                R.id.btn_airplane_off -> {
+
+                    NoInternetUtils.turnOffAirplaneMode(context)
+
+                }
             }
 
         }
@@ -208,6 +268,8 @@ class NoInternetDialog private constructor(
     override fun show() {
         if (!activity.isFinishing) {
             super.show()
+
+            updateViews()
             initAnimations()
         }
     }
@@ -249,6 +311,12 @@ class NoInternetDialog private constructor(
         var wifiOnButtonText = activity.getString(R.string.wifi)
         var mobileDataOnButtonText = activity.getString(R.string.mobile_data)
 
+        var onAirplaneModeTitle = activity.getString(R.string.default_title)
+        var onAirplaneModeMessage = activity.getString(R.string.default_airplane_mode_message)
+        var pleaseTurnOffText = activity.getString(R.string.please_turn_off)
+        var airplaneModeOffButtonText = activity.getString(R.string.airplane_mode)
+        var showAirplaneModeOffButtons = true
+
         fun build(): NoInternetDialog {
             val dialog = NoInternetDialog(
                 activity,
@@ -258,7 +326,13 @@ class NoInternetDialog private constructor(
                 showInternetOnButtons,
                 pleaseTurnOnText,
                 wifiOnButtonText,
-                mobileDataOnButtonText
+                mobileDataOnButtonText,
+
+                onAirplaneModeTitle,
+                onAirplaneModeMessage,
+                pleaseTurnOffText,
+                airplaneModeOffButtonText,
+                showAirplaneModeOffButtons
             )
 
             dialog.connectionCallback = connectionCallback
