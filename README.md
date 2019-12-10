@@ -4,6 +4,13 @@ A simple no Internet dialog and snackbar, which will automatically
 appear and disappear based on Internet connectivity status.
 
 [![](https://jitpack.io/v/ImaginativeShohag/Oops-No-Internet.svg)](https://jitpack.io/#ImaginativeShohag/Oops-No-Internet)
+[![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
+
+## Previews
+
+|![No Internet Dialog](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/dialog_no_internet.gif)|![Airplane Mode Dialog](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/dialog_airplane_mode.gif)|
+|---|---|
+|![No Internet Snackbar](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/snackbar_no_internet.jpg)|![Airplane Mode Snackbar](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/snackbar_airplane_mode.jpg)|
 
 ## Usage
 
@@ -29,11 +36,11 @@ dependencies {
     // Material Components for Android
     implementation 'com.google.android.material:material:1.0.0'
 
-    implementation 'com.github.ImaginativeShohag:Oops-No-Internet:v1.1.1'
+    implementation 'com.github.ImaginativeShohag:Oops-No-Internet:v1.1.2'
 }
 ```
 
-**Note 0.** Minimum SDK for this library is API 21 (Android 5.0 Lollipop).
+**Note 0.** Minimum SDK for this library is **API 21** (Android 5.0 Lollipop).
 
 **Note 1.** Your application have to use **AndroidX** to use this library.
 
@@ -197,13 +204,19 @@ public class Main2Activity extends AppCompatActivity {
 }
 ```
 
+The sample project can be found [here](https://github.com/ImaginativeShohag/Oops-No-Internet-Sample).
 
 ## Credits
 
 This library is inspired by [NoInternetDialog](https://github.com/appwise-labs/NoInternetDialog).
+
 Library name credit goes to Fahima Lamia Neha.
 
 ## Changelog
+
+### 1.1.2
+
+Airplane animation tweak.
 
 ### 1.1.1
 
