@@ -10,6 +10,7 @@ import java.net.URL
 
 object NoInternetUtils {
 
+    @JvmStatic
     fun isConnectedToInternet(context: Context): Boolean {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -18,6 +19,7 @@ object NoInternetUtils {
         return activeNetwork?.isConnected == true
     }
 
+    @JvmStatic
     fun isAirplaneModeOn(context: Context): Boolean {
         return Settings.System.getInt(
             context.contentResolver,
@@ -26,6 +28,7 @@ object NoInternetUtils {
         ) != 0
     }
 
+    @JvmStatic
     fun hasActiveInternetConnection(): Boolean {
         try {
             val urlConnection =
@@ -43,14 +46,17 @@ object NoInternetUtils {
         return false
     }
 
+    @JvmStatic
     fun turnOnMobileData(context: Context) {
         context.startActivity(Intent(Settings.ACTION_SETTINGS))
     }
 
+    @JvmStatic
     fun turnOnWifi(context: Context) {
         context.startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
     }
 
+    @JvmStatic
     fun turnOffAirplaneMode(context: Context) {
         context.startActivity(Intent(Settings.ACTION_WIRELESS_SETTINGS))
     }
