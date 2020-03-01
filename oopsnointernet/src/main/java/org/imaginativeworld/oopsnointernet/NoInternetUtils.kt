@@ -1,15 +1,20 @@
 package org.imaginativeworld.oopsnointernet
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
 import android.provider.Settings
+import android.widget.Toast
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
 
 object NoInternetUtils {
 
+    /**
+     * Check if the device is connected with the Internet.
+     */
     @JvmStatic
     fun isConnectedToInternet(context: Context): Boolean {
         val connectivityManager =
@@ -19,6 +24,9 @@ object NoInternetUtils {
         return activeNetwork?.isConnected == true
     }
 
+    /**
+     * Check if the device is in airplane mode.
+     */
     @JvmStatic
     fun isAirplaneModeOn(context: Context): Boolean {
         return Settings.System.getInt(
@@ -28,6 +36,10 @@ object NoInternetUtils {
         ) != 0
     }
 
+    /**
+     * Ping google.com to check if the internet connection is active.
+     * It must be called from a background thread.
+     */
     @JvmStatic
     fun hasActiveInternetConnection(): Boolean {
         try {
@@ -46,19 +58,40 @@ object NoInternetUtils {
         return false
     }
 
+    /**
+     * Open the system settings.
+     */
     @JvmStatic
     fun turnOnMobileData(context: Context) {
-        context.startActivity(Intent(Settings.ACTION_SETTINGS))
+        try {
+            context.startActivity(Intent(Settings.ACTION_SETTINGS))
+        } catch (e: ActivityNotFoundException) {
+            Toast.makeText(context, "It cannot open settings!", Toast.LENGTH_LONG).show()
+        }
     }
 
+    /**
+     * Open the wifi settings.
+     */
     @JvmStatic
     fun turnOnWifi(context: Context) {
-        context.startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
+        try {
+            context.startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
+        } catch (e: ActivityNotFoundException) {
+            Toast.makeText(context, "It cannot open settings!", Toast.LENGTH_LONG).show()
+        }
     }
 
+    /**
+     * Open the airplane mode settings.
+     */
     @JvmStatic
     fun turnOffAirplaneMode(context: Context) {
-        context.startActivity(Intent(Settings.ACTION_WIRELESS_SETTINGS))
+        try {
+            context.startActivity(Intent(Settings.ACTION_AIRPLANE_MODE_SETTINGS))
+        } catch (e: ActivityNotFoundException) {
+            Toast.makeText(context, "It cannot open settings!", Toast.LENGTH_LONG).show()
+        }
     }
 
 }

@@ -11,16 +11,20 @@ import android.net.NetworkInfo
 import android.net.NetworkRequest
 import android.os.Build
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.FrameLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.dialog_no_internet.*
 
+
+// todo: check dialog width in symphony mobile
 class NoInternetDialog private constructor(
     private val activity: Activity,
-    private val cancellable: Boolean,
+    private val cancelable: Boolean,
 
     private val noInternetConnectionTitle: String,
     private val noInternetConnectionMessage: String,
@@ -125,7 +129,7 @@ class NoInternetDialog private constructor(
     }
 
     private fun initProperties() {
-        setCancelable(cancellable)
+        setCancelable(cancelable)
     }
 
     private fun initMainWindow() {
@@ -133,6 +137,23 @@ class NoInternetDialog private constructor(
     }
 
     private fun initViews() {
+        // Check if the dialog width is bigger then the screen width!
+        val displayMetrics = DisplayMetrics()
+        window?.apply {
+            windowManager.defaultDisplay.getMetrics(displayMetrics)
+            val widthDp = displayMetrics.widthPixels.toFloat().toDp(context)
+
+            Log.d(TAG, "width: $widthDp")
+
+            if (widthDp < 352) { // 320dp width + 16dp*2 margin
+                main_container.layoutParams = FrameLayout.LayoutParams(
+                    (widthDp - 32).toPx(context),
+                    FrameLayout.LayoutParams.WRAP_CONTENT
+                )
+            }
+        }
+
+        // Init other views
         tv_please_turn_on.text = pleaseTurnOnText
         btn_wifi_on.text = wifiOnButtonText
         btn_mobile_on.text = mobileDataOnButtonText
