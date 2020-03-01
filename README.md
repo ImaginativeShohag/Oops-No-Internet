@@ -37,7 +37,7 @@ dependencies {
     // Material Components for Android
     implementation 'com.google.android.material:material:1.1.0'
 
-    implementation 'com.github.ImaginativeShohag:Oops-No-Internet:v1.1.4'
+    implementation 'com.github.ImaginativeShohag:Oops-No-Internet:v1.1.5'
 }
 ```
 
