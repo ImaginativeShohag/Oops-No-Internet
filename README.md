@@ -215,7 +215,7 @@ Library name credit goes to Fahima Lamia Neha.
 
 ## Changelog
 
-### 1.1.4
+### 1.1.4 & 1.1.5
 
 - `NoInternetUtils` functions are now documented.
 - Dialog width optimized for small screens.
