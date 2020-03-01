@@ -35,9 +35,9 @@ allprojects {
 ```groovy
 dependencies {
     // Material Components for Android
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
 
-    implementation 'com.github.ImaginativeShohag:Oops-No-Internet:v1.1.3'
+    implementation 'com.github.ImaginativeShohag:Oops-No-Internet:v1.1.4'
 }
 ```
 
@@ -214,6 +214,12 @@ This library is inspired by [NoInternetDialog](https://github.com/appwise-labs/N
 Library name credit goes to Fahima Lamia Neha.
 
 ## Changelog
+
+### 1.1.4
+
+- `NoInternetUtils` functions are now documented.
+- Dialog width optimized for small screens.
+- Dependency updated.
 
 ### 1.1.3
 
