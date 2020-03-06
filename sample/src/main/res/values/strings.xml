@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Oops! No Internet! Sample</string>
+    <string name="dialog">Dialog</string>
+    <string name="snackbar">Snackbar</string>
+</resources>

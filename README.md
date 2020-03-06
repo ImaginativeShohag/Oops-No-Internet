@@ -205,7 +205,7 @@ public class Main2Activity extends AppCompatActivity {
 }
 ```
 
-The sample project can be found [here](https://github.com/ImaginativeShohag/Oops-No-Internet-Sample).
+The sample project can be found [here](https://github.com/ImaginativeShohag/Oops-No-Internet/tree/master/sample).
 
 ## Credits
 
