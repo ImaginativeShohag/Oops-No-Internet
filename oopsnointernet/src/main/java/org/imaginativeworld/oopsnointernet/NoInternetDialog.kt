@@ -18,10 +18,8 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import androidx.constraintlayout.widget.ConstraintLayout
-import kotlinx.android.synthetic.main.dialog_no_internet.*
+import org.imaginativeworld.oopsnointernet.databinding.DialogNoInternetBinding
 
-
-// todo: check dialog width in symphony mobile
 class NoInternetDialog private constructor(
     private val activity: Activity,
     private val cancelable: Boolean,
@@ -41,6 +39,8 @@ class NoInternetDialog private constructor(
 ) : Dialog(activity), View.OnClickListener {
 
     private val TAG = "NoInternetDialog"
+
+    private lateinit var binding: DialogNoInternetBinding
 
     private var connectivityManager: ConnectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -119,7 +119,8 @@ class NoInternetDialog private constructor(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.dialog_no_internet)
+        binding = DialogNoInternetBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         initProperties()
         initMainWindow()
@@ -146,7 +147,7 @@ class NoInternetDialog private constructor(
             Log.d(TAG, "width: $widthDp")
 
             if (widthDp < 352) { // 320dp width + 16dp*2 margin
-                main_container.layoutParams = FrameLayout.LayoutParams(
+                binding.mainContainer.layoutParams = FrameLayout.LayoutParams(
                     (widthDp - 32).toPx(context),
                     FrameLayout.LayoutParams.WRAP_CONTENT
                 )
@@ -154,19 +155,19 @@ class NoInternetDialog private constructor(
         }
 
         // Init other views
-        tv_please_turn_on.text = pleaseTurnOnText
-        btn_wifi_on.text = wifiOnButtonText
-        btn_mobile_on.text = mobileDataOnButtonText
+        binding.tvPleaseTurnOn.text = pleaseTurnOnText
+        binding.btnWifiOn.text = wifiOnButtonText
+        binding.btnMobileOn.text = mobileDataOnButtonText
 
-        tv_please_turn_off.text = pleaseTurnOffText
-        btn_airplane_off.text = airplaneModeOffButtonText
+        binding.tvPleaseTurnOff.text = pleaseTurnOffText
+        binding.btnAirplaneOff.text = airplaneModeOffButtonText
     }
 
     private fun updateViews() {
         if (NoInternetUtils.isAirplaneModeOn(activity)) {
 
-            tv_title.text = onAirplaneModeTitle
-            tv_message.text = onAirplaneModeMessage
+            binding.tvTitle.text = onAirplaneModeTitle
+            binding.tvMessage.text = onAirplaneModeMessage
 
             hideNoInternetButtonViews()
 
@@ -178,8 +179,8 @@ class NoInternetDialog private constructor(
 
         } else {
 
-            tv_title.text = noInternetConnectionTitle
-            tv_message.text = noInternetConnectionMessage
+            binding.tvTitle.text = noInternetConnectionTitle
+            binding.tvMessage.text = noInternetConnectionMessage
 
             hideTurnOffAirplaneModeButtonViews()
 
@@ -195,41 +196,41 @@ class NoInternetDialog private constructor(
     }
 
     private fun showNoInternetButtonViews() {
-        group_turn_on_internet.visibility = View.VISIBLE
+        binding.groupTurnOnInternet.visibility = View.VISIBLE
     }
 
     private fun hideNoInternetButtonViews() {
-        group_turn_on_internet.visibility = View.GONE
+        binding.groupTurnOnInternet.visibility = View.GONE
     }
 
     private fun showTurnOffAirplaneModeButtonViews() {
-        group_turn_off_airplane.visibility = View.VISIBLE
+        binding.groupTurnOffAirplane.visibility = View.VISIBLE
     }
 
     private fun hideTurnOffAirplaneModeButtonViews() {
-        group_turn_off_airplane.visibility = View.GONE
+        binding.groupTurnOffAirplane.visibility = View.GONE
     }
 
     private fun updateMessageLayoutParams() {
         if (!showInternetOnButtons && !showAirplaneModeOffButtons) {
-            val params = tv_message.layoutParams as ConstraintLayout.LayoutParams
+            val params = binding.tvMessage.layoutParams as ConstraintLayout.LayoutParams
             params.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID
-            tv_message.requestLayout()
+            binding.tvMessage.requestLayout()
         }
     }
 
     private fun initListeners() {
-        btn_wifi_on.setOnClickListener(this)
-        btn_mobile_on.setOnClickListener(this)
-        btn_airplane_off.setOnClickListener(this)
+        binding.btnWifiOn.setOnClickListener(this)
+        binding.btnMobileOn.setOnClickListener(this)
+        binding.btnAirplaneOff.setOnClickListener(this)
     }
 
     private fun initAnimations() {
-        no_internet_img_1.animation = AnimationUtils.loadAnimation(activity, R.anim.wave_1)
-        no_internet_img_2.animation = AnimationUtils.loadAnimation(activity, R.anim.wave_2)
+        binding.noInternetImg1.animation = AnimationUtils.loadAnimation(activity, R.anim.wave_1)
+        binding.noInternetImg2.animation = AnimationUtils.loadAnimation(activity, R.anim.wave_2)
 
         if (NoInternetUtils.isAirplaneModeOn(activity)) {
-            img_airplane.visibility = View.VISIBLE
+            binding.imgAirplane.visibility = View.VISIBLE
 
             val airplaneStart = AnimationUtils.loadAnimation(activity, R.anim.airplane_start)
             val airplaneEnd = AnimationUtils.loadAnimation(activity, R.anim.airplane_end)
@@ -239,7 +240,7 @@ class NoInternetDialog private constructor(
                 override fun onAnimationStart(animation: Animation?) {}
 
                 override fun onAnimationEnd(animation: Animation?) {
-                    img_airplane.startAnimation(airplaneEnd)
+                    binding.imgAirplane.startAnimation(airplaneEnd)
                 }
             })
 
@@ -248,13 +249,13 @@ class NoInternetDialog private constructor(
                 override fun onAnimationStart(animation: Animation?) {}
 
                 override fun onAnimationEnd(animation: Animation?) {
-                    img_airplane.startAnimation(airplaneStart)
+                    binding.imgAirplane.startAnimation(airplaneStart)
                 }
             })
 
-            img_airplane.animation = airplaneStart
+            binding.imgAirplane.animation = airplaneStart
         } else {
-            img_airplane.visibility = View.GONE
+            binding.imgAirplane.visibility = View.GONE
         }
     }
 
@@ -312,10 +313,9 @@ class NoInternetDialog private constructor(
     }
 
     fun destroy() {
+        connectivityManager.unregisterNetworkCallback(connectivityManagerCallback)
 
         dismiss()
-
-        connectivityManager.unregisterNetworkCallback(connectivityManagerCallback)
     }
 
     class Builder(
