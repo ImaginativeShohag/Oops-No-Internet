@@ -3,6 +3,7 @@ package org.imaginativeworld.oopsnointernet
 import android.content.Context
 import android.os.AsyncTask
 
+// todo: remove this.
 class Ping : AsyncTask<Context, Void, Boolean>() {
 
     var connectionCallback: ConnectionCallback? = null

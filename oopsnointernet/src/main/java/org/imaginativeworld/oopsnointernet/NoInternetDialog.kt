@@ -94,7 +94,7 @@ class NoInternetDialog private constructor(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
             connectivityManagerCallback = object : ConnectivityManager.NetworkCallback() {
-                override fun onAvailable(network: Network?) {
+                override fun onAvailable(network: Network) {
                     Log.d(TAG, "onAvailable(): ${network.toString()}")
 
                     dismiss()
@@ -102,7 +102,7 @@ class NoInternetDialog private constructor(
                     connectionCallback?.hasActiveConnection(true)
                 }
 
-                override fun onLost(network: Network?) {
+                override fun onLost(network: Network) {
                     Log.d(TAG, "onLost(): ${network.toString()}")
 
                     showDialog()
@@ -348,7 +348,6 @@ class NoInternetDialog private constructor(
                 pleaseTurnOnText,
                 wifiOnButtonText,
                 mobileDataOnButtonText,
-
                 onAirplaneModeTitle,
                 onAirplaneModeMessage,
                 pleaseTurnOffText,
@@ -360,7 +359,6 @@ class NoInternetDialog private constructor(
 
             return dialog
         }
-
 
     }
 }

@@ -213,6 +213,8 @@ This library is inspired by [NoInternetDialog](https://github.com/appwise-labs/N
 
 Library name credit goes to Fahima Lamia Neha.
 
+The icons and images used in the sample project are from freepik.com and flaticon.com.
+
 ## Changelog
 
 ### 1.1.4 & 1.1.5

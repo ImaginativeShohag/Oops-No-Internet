@@ -129,7 +129,7 @@ class NoInternetSnackbar private constructor(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
             connectivityManagerCallback = object : ConnectivityManager.NetworkCallback() {
-                override fun onAvailable(network: Network?) {
+                override fun onAvailable(network: Network) {
                     Log.d(TAG, "onAvailable(): ${network.toString()}")
 
                     dismiss()
@@ -137,7 +137,7 @@ class NoInternetSnackbar private constructor(
                     connectionCallback?.hasActiveConnection(true)
                 }
 
-                override fun onLost(network: Network?) {
+                override fun onLost(network: Network) {
                     Log.d(TAG, "onLost(): ${network.toString()}")
 
                     show()

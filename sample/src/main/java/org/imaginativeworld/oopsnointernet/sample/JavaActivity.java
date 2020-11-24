@@ -10,27 +10,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.imaginativeworld.oopsnointernet.ConnectionCallback;
 import org.imaginativeworld.oopsnointernet.NoInternetDialog;
 import org.imaginativeworld.oopsnointernet.NoInternetSnackbar;
+import org.imaginativeworld.oopsnointernet.sample.databinding.ActivityJavaBinding;
 
 public class JavaActivity extends AppCompatActivity {
 
+    private ActivityJavaBinding binding;
+
     // No Internet Dialog
-    NoInternetDialog noInternetDialog;
+    private NoInternetDialog noInternetDialog;
 
     // No Internet Snackbar
-    NoInternetSnackbar noInternetSnackbar;
+    private NoInternetSnackbar noInternetSnackbar;
 
-    RadioGroup radio_group;
-
-    int selectedRadioId = R.id.radio_dialog;
+    private int selectedRadioId = R.id.radio_dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_java);
+        binding = ActivityJavaBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        radio_group = findViewById(R.id.radio_group);
-
-        radio_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        binding.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 

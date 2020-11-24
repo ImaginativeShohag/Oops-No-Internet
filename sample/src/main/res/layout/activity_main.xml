@@ -10,7 +10,7 @@
         android:id="@+id/radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:checkedButton="@id/radio_dialog"
+        android:checkedButton="@id/radio_custom_dialog"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +27,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/snackbar" />
+
+        <RadioButton
+            android:id="@+id/radio_custom_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/custom_dialog" />
 
     </RadioGroup>
 
