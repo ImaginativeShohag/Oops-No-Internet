@@ -6,10 +6,8 @@
     android:layout_width="320dp"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
-    app:cardBackgroundColor="@color/flat_grey_light_1"
     app:cardCornerRadius="8dp"
-    app:cardElevation="8dp"
-    tools:context="NoInternetDialog">
+    app:cardElevation="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -25,7 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_airplane"
-            app:tint="@color/flat_grey_normal_1" />
+            app:tint="?attr/NoInternet_Dialog_Pendulum_airplaneColor" />
 
         <ImageView
             android:id="@+id/no_internet_img_1"
@@ -57,7 +55,7 @@
             android:gravity="center"
             android:text="@string/default_title"
             android:textAllCaps="true"
-            android:textColor="@color/flat_grey_dark_2"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -74,7 +72,7 @@
             android:layout_marginBottom="32dp"
             android:gravity="center"
             android:text="@string/default_message"
-            android:textColor="@color/flat_grey_dark_1"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -92,7 +90,7 @@
             android:gravity="center"
             android:text="@string/please_turn_on"
             android:textAllCaps="true"
-            android:textColor="@color/flat_grey_dark_1"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -108,19 +106,21 @@
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="24dp"
             android:text="@string/wifi"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="14sp"
             app:cornerRadius="100dp"
             app:icon="@drawable/ic_wifi"
             app:iconSize="18dp"
+            app:iconTint="?attr/colorOnPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btn_mobile_on"
+            app:layout_constraintEnd_toStartOf="@+id/btn_mobile_data_on"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_please_turn_on" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_mobile_on"
+            android:id="@+id/btn_mobile_data_on"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -128,10 +128,12 @@
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
             android:text="@string/mobile_data"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="14sp"
             app:cornerRadius="100dp"
             app:icon="@drawable/ic_swap_vert"
             app:iconSize="18dp"
+            app:iconTint="?attr/colorOnPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -144,7 +146,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="visible"
-            app:constraint_referenced_ids="tv_please_turn_on,btn_wifi_on,btn_mobile_on" />
+            app:constraint_referenced_ids="tv_please_turn_on,btn_wifi_on,btn_mobile_data_on" />
 
         <!-- ================================ -->
 
@@ -158,7 +160,7 @@
             android:gravity="center"
             android:text="@string/please_turn_off"
             android:textAllCaps="true"
-            android:textColor="@color/flat_grey_dark_1"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -175,10 +177,12 @@
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
             android:text="@string/airplane_mode"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="14sp"
             app:cornerRadius="100dp"
             app:icon="@drawable/ic_airplanemode_inactive"
             app:iconSize="18dp"
+            app:iconTint="?attr/colorOnPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -191,7 +195,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            app:constraint_referenced_ids="tv_please_turn_off,btn_airplane_off" />
+            app:constraint_referenced_ids="tv_please_turn_off,btn_airplane_off"
+            tools:visibility="gone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

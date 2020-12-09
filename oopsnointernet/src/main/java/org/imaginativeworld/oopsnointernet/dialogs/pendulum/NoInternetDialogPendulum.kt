@@ -1,83 +1,42 @@
-package org.imaginativeworld.oopsnointernet
+package org.imaginativeworld.oopsnointernet.dialogs.pendulum
 
 import android.app.Activity
-import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Lifecycle
-import org.imaginativeworld.oopsnointernet.databinding.DialogNoInternetBinding
+import org.imaginativeworld.oopsnointernet.R
+import org.imaginativeworld.oopsnointernet.databinding.DialogNoInternetPendulumBinding
+import org.imaginativeworld.oopsnointernet.dialogs.base.BaseNoInternetDialog
+import org.imaginativeworld.oopsnointernet.utils.NoInternetUtils
+import org.imaginativeworld.oopsnointernet.utils.fixWidth
 
-class NoInternetDialogNew private constructor(
+class NoInternetDialogPendulum private constructor(
     private val activity: Activity,
     lifecycle: Lifecycle,
-    private val dialogProperties: DialogProperties
-) : BaseNoInternetDialog(activity, lifecycle, dialogProperties), View.OnClickListener {
+    private val dialogProperties: DialogPropertiesPendulum
+) : BaseNoInternetDialog(activity, lifecycle, dialogProperties, R.style.Dialog_Pendulum),
+    View.OnClickListener {
 
-    private val TAG = "NoInternetDialog"
-
-    private lateinit var binding: DialogNoInternetBinding
+    private lateinit var binding: DialogNoInternetPendulumBinding
 
     override fun setLayout() {
-        binding = DialogNoInternetBinding.inflate(layoutInflater)
+        binding = DialogNoInternetPendulumBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 
     override fun initView() {
-        window?.fixWidth(352) // 320dp width + 16dp*2 margin
+        // 320dp width, 16dp*2 margin
+        window?.fixWidth(320, 32)
 
         initListeners()
-        initAnimations()
     }
 
     private fun initListeners() {
         binding.btnWifiOn.setOnClickListener(this)
-        binding.btnMobileOn.setOnClickListener(this)
+        binding.btnMobileDataOn.setOnClickListener(this)
         binding.btnAirplaneOff.setOnClickListener(this)
-    }
-
-    private fun initAnimations() {
-        binding.noInternetImg1.animation = AnimationUtils.loadAnimation(activity, R.anim.wave_1)
-        binding.noInternetImg2.animation = AnimationUtils.loadAnimation(activity, R.anim.wave_2)
-
-        if (NoInternetUtils.isAirplaneModeOn(activity)) {
-            binding.imgAirplane.visibility = View.VISIBLE
-
-            val airplaneStart = AnimationUtils.loadAnimation(activity, R.anim.airplane_start)
-            val airplaneEnd = AnimationUtils.loadAnimation(activity, R.anim.airplane_end)
-
-            airplaneStart.setAnimationListener(object : Animation.AnimationListener {
-                override fun onAnimationRepeat(animation: Animation?) {}
-                override fun onAnimationStart(animation: Animation?) {}
-
-                override fun onAnimationEnd(animation: Animation?) {
-                    Log.e(TAG, "onAnimationEnd")
-
-                    binding.imgAirplane.startAnimation(airplaneEnd)
-                }
-            })
-
-            airplaneEnd.setAnimationListener(object : Animation.AnimationListener {
-                override fun onAnimationRepeat(animation: Animation?) {}
-                override fun onAnimationStart(animation: Animation?) {}
-
-                override fun onAnimationEnd(animation: Animation?) {
-                    binding.imgAirplane.startAnimation(airplaneStart)
-                }
-            })
-
-            binding.imgAirplane.animation = airplaneStart
-        } else {
-            binding.imgAirplane.visibility = View.GONE
-        }
-    }
-
-    private fun stopAnimations() {
-        binding.noInternetImg1.animation = null
-        binding.noInternetImg2.animation = null
-
-        binding.imgAirplane.clearAnimation()
     }
 
     override fun onShow(isAirplaneModeOn: Boolean) {
@@ -85,11 +44,17 @@ class NoInternetDialogNew private constructor(
         initAnimations()
     }
 
+    override fun onDismiss() {
+        /* no-op */
+    }
+
     private fun updateViews(isAirplaneModeOn: Boolean) {
         if (isAirplaneModeOn) {
 
             binding.tvTitle.text = dialogProperties.onAirplaneModeTitle
             binding.tvMessage.text = dialogProperties.onAirplaneModeMessage
+
+            binding.imgAirplane.visibility = View.VISIBLE
 
             hideNoInternetButtonViews()
 
@@ -104,6 +69,8 @@ class NoInternetDialogNew private constructor(
             binding.tvTitle.text = dialogProperties.noInternetConnectionTitle
             binding.tvMessage.text = dialogProperties.noInternetConnectionMessage
 
+            binding.imgAirplane.visibility = View.GONE
+
             hideTurnOffAirplaneModeButtonViews()
 
             if (dialogProperties.showInternetOnButtons) {
@@ -115,6 +82,38 @@ class NoInternetDialogNew private constructor(
         }
 
         updateMessageLayoutParams()
+    }
+
+    private fun initAnimations() {
+        binding.noInternetImg1.animation = AnimationUtils.loadAnimation(activity, R.anim.wave_1)
+        binding.noInternetImg2.animation = AnimationUtils.loadAnimation(activity, R.anim.wave_2)
+
+        if (NoInternetUtils.isAirplaneModeOn(activity)) {
+
+            val airplaneStart = AnimationUtils.loadAnimation(activity, R.anim.airplane_start)
+            val airplaneEnd = AnimationUtils.loadAnimation(activity, R.anim.airplane_end)
+
+            airplaneStart.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationRepeat(animation: Animation?) {}
+                override fun onAnimationStart(animation: Animation?) {}
+
+                override fun onAnimationEnd(animation: Animation?) {
+                    binding.imgAirplane.startAnimation(airplaneEnd)
+                }
+            })
+
+            airplaneEnd.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationRepeat(animation: Animation?) {}
+                override fun onAnimationStart(animation: Animation?) {}
+
+                override fun onAnimationEnd(animation: Animation?) {
+                    binding.imgAirplane.startAnimation(airplaneStart)
+                }
+            })
+
+            binding.imgAirplane.animation = airplaneStart
+
+        }
     }
 
     private fun showNoInternetButtonViews() {
@@ -142,7 +141,7 @@ class NoInternetDialogNew private constructor(
     }
 
     override fun onDestroy() {
-//        stopAnimations()
+        /* no-op */
     }
 
     override fun onClick(v: View?) {
@@ -155,7 +154,7 @@ class NoInternetDialogNew private constructor(
 
                 }
 
-                R.id.btn_mobile_on -> {
+                R.id.btn_mobile_data_on -> {
 
                     NoInternetUtils.turnOnMobileData(context)
 
@@ -175,7 +174,7 @@ class NoInternetDialogNew private constructor(
         private val activity: Activity,
         private val lifecycle: Lifecycle
     ) {
-        val dialogProperties = DialogProperties()
+        val dialogProperties = DialogPropertiesPendulum()
 
         init {
             dialogProperties.apply {
@@ -195,8 +194,8 @@ class NoInternetDialogNew private constructor(
             }
         }
 
-        fun build(): NoInternetDialogNew {
-            return NoInternetDialogNew(
+        fun build(): NoInternetDialogPendulum {
+            return NoInternetDialogPendulum(
                 activity,
                 lifecycle,
                 dialogProperties

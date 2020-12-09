@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Dialog.Pendulum" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <item name="colorPrimary">@color/flat_grey_dark_2</item>
+        <item name="colorPrimaryVariant">@color/flat_grey_dark_2</item>
+        <item name="colorSecondary">@color/flat_grey_dark_2</item>
+        <item name="colorSecondaryVariant">@color/flat_grey_dark_2</item>
+
+        <item name="android:colorBackground">@color/flat_grey_dark_1</item>
+        <item name="colorSurface">@color/flat_grey_dark_1</item>
+        <item name="colorError">@color/flat_red_2</item>
+
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnError">@color/flat_grey_dark_2</item>
+
+
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
+
+        <!-- Customs -->
+        <item name="NoInternet_Dialog_Pendulum_airplaneColor">@color/flat_grey_light_2</item>
+    </style>
+
+    <style name="Dialog.Signal" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <item name="colorPrimary">@color/flat_grey_dark_2</item>
+        <item name="colorPrimaryVariant">@color/flat_grey_dark_2</item>
+        <item name="colorSecondary">@color/flat_grey_dark_2</item>
+        <item name="colorSecondaryVariant">@color/flat_grey_dark_2</item>
+
+        <item name="android:colorBackground">@color/flat_grey_dark_1</item>
+        <item name="colorSurface">@color/flat_grey_dark_1</item>
+        <item name="colorError">@color/flat_red_2</item>
+
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnError">@color/flat_grey_dark_2</item>
+
+
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
+
+        <!-- Customs -->
+        <item name="NoInternet_Dialog_Signal_airplaneColor">@color/flat_grey_light_2</item>
+        <item name="NoInternet_Dialog_Signal_topBottomShade">@drawable/top_bottom_shade_dark</item>
+
+        <item name="NoInternet_Dialog_Signal_round">@drawable/round_dark</item>
+
+        <item name="NoInternet_Dialog_Signal_cloudColorOne">@drawable/ic_cloud_1_dark</item>
+        <item name="NoInternet_Dialog_Signal_cloudColorTwo">@drawable/ic_cloud_2_dark</item>
+        <item name="NoInternet_Dialog_Signal_cloudColorThree">@drawable/ic_cloud_3_dark</item>
+    </style>
+
+</resources>

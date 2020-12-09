@@ -1,6 +1,8 @@
-package org.imaginativeworld.oopsnointernet
+package org.imaginativeworld.oopsnointernet.dialogs.pendulum
 
-class DialogProperties(
+import org.imaginativeworld.oopsnointernet.dialogs.base.BaseDialogProperties
+
+class DialogPropertiesPendulum(
     var noInternetConnectionTitle: String = "",
     var noInternetConnectionMessage: String = "",
     var showInternetOnButtons: Boolean = false,

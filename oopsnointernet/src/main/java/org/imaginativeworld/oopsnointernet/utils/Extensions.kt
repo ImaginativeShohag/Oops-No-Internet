@@ -1,12 +1,11 @@
 @file:JvmName("Utils")
 
-package org.imaginativeworld.oopsnointernet
+package org.imaginativeworld.oopsnointernet.utils
 
 import android.content.Context
 import android.graphics.Insets
 import android.os.Build
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.Window
 import android.view.WindowInsets
 import android.widget.FrameLayout
@@ -53,18 +52,25 @@ fun Window.getAppWindowWidth(): Int {
 /**
  * Fix width if the screen is small then the layout width.
  *
- * @param layoutSizeInDp Layout width (with margin) in dp.
+ * @param layoutWidthInDp Layout width in dp.
+ * @param layoutTotalHorizontalMarginInDp Layout horizontal total margin in dp.
  */
-fun Window.fixWidth(layoutSizeInDp: Int) {
+fun Window.fixWidth(layoutWidthInDp: Int, layoutTotalHorizontalMarginInDp: Int) {
     val widthDp = getAppWindowWidth().toFloat().toDp(context)
 
-    Log.d("Utils.fixWidth", "layoutSizeInDp in Dp: $layoutSizeInDp")
-    Log.d("Utils.fixWidth", "width in Dp: $widthDp")
+    LogUtils.d("fixWidth", "layout original width: $layoutWidthInDp dp")
+    LogUtils.d("fixWidth", "layout total horizontal margin: $layoutTotalHorizontalMarginInDp dp")
+    LogUtils.d("fixWidth", "app window width: $widthDp dp")
 
     // Check if the dialog width is bigger then the screen width!
-    if (widthDp < layoutSizeInDp) {
+    if (widthDp < (layoutWidthInDp + layoutTotalHorizontalMarginInDp)) {
         setLayout(
-            (widthDp - 32).toPx(context),
+            (widthDp - layoutTotalHorizontalMarginInDp).toPx(context),
+            FrameLayout.LayoutParams.WRAP_CONTENT
+        )
+    } else {
+        setLayout(
+            layoutWidthInDp.toFloat().toPx(context),
             FrameLayout.LayoutParams.WRAP_CONTENT
         )
     }

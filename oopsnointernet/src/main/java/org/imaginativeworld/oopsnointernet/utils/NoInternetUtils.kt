@@ -1,4 +1,4 @@
-package org.imaginativeworld.oopsnointernet
+package org.imaginativeworld.oopsnointernet.utils
 
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -29,7 +29,7 @@ object NoInternetUtils {
      */
     @JvmStatic
     fun isAirplaneModeOn(context: Context): Boolean {
-        return Settings.System.getInt(
+        return Settings.Global.getInt(
             context.contentResolver,
             Settings.Global.AIRPLANE_MODE_ON,
             0

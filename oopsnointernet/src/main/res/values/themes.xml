@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Dialog.Pendulum" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorSecondary">@color/colorPrimary</item>
+        <item name="colorSecondaryVariant">@color/colorPrimaryDark</item>
+
+        <item name="android:colorBackground">@color/flat_grey_light_1</item>
+        <item name="colorSurface">@color/flat_grey_light_1</item>
+        <item name="colorError">@color/flat_red_1</item>
+
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorOnBackground">@color/flat_grey_dark_2</item>
+        <item name="colorOnSurface">@color/flat_grey_dark_2</item>
+        <item name="colorOnError">@color/white</item>
+
+        <!-- Customs -->
+        <item name="NoInternet_Dialog_Pendulum_airplaneColor">@color/flat_grey_normal_1</item>
+    </style>
+
+    <style name="Dialog.Signal" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorSecondary">@color/colorPrimary</item>
+        <item name="colorSecondaryVariant">@color/colorPrimaryDark</item>
+
+        <item name="android:colorBackground">#f5f5f5</item>
+        <item name="colorSurface">#f5f5f5</item>
+        <item name="colorError">@color/flat_red_1</item>
+
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorOnBackground">@color/flat_grey_dark_2</item>
+        <item name="colorOnSurface">@color/flat_grey_dark_2</item>
+        <item name="colorOnError">@color/white</item>
+
+        <!-- Customs -->
+        <item name="NoInternet_Dialog_Signal_airplaneColor">#555</item>
+        <item name="NoInternet_Dialog_Signal_topBottomShade">@drawable/top_bottom_shade</item>
+
+        <item name="NoInternet_Dialog_Signal_round">@drawable/round</item>
+
+        <item name="NoInternet_Dialog_Signal_cloudColorOne">@drawable/ic_cloud_1</item>
+        <item name="NoInternet_Dialog_Signal_cloudColorTwo">@drawable/ic_cloud_2</item>
+        <item name="NoInternet_Dialog_Signal_cloudColorThree">@drawable/ic_cloud_3</item>
+    </style>
+
+</resources>
