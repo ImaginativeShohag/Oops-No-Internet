@@ -2,6 +2,8 @@ package org.imaginativeworld.oopsnointernet.sample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+import org.imaginativeworld.oopsnointernet.callbacks.ConnectionCallback
 import org.imaginativeworld.oopsnointernet.dialogs.pendulum.NoInternetDialogPendulum
 import org.imaginativeworld.oopsnointernet.dialogs.signal.NoInternetDialogSignal
 import org.imaginativeworld.oopsnointernet.sample.databinding.ActivityKotlinExampleBinding
@@ -33,44 +35,105 @@ class KotlinExampleActivity : AppCompatActivity() {
 
         when (type) {
             Constants.TYPE_DIALOG_PENDULUM -> {
+
                 noInternetDialogPendulum = NoInternetDialogPendulum.Builder(
                     this,
                     lifecycle
                 ).apply {
                     dialogProperties.apply {
-                        cancelable = true
+                        connectionCallback = object : ConnectionCallback { // Optional
+                            override fun hasActiveConnection(hasActiveConnection: Boolean) {
+                                // ...
+                            }
+                        }
+
+                        cancelable = false // Optional
+                        noInternetConnectionTitle = "No Internet" // Optional
+                        noInternetConnectionMessage =
+                            "Check your Internet connection and try again." // Optional
+                        showInternetOnButtons = true // Optional
+                        pleaseTurnOnText = "Please turn on" // Optional
+                        wifiOnButtonText = "Wifi" // Optional
+                        mobileDataOnButtonText = "Mobile data" // Optional
+
+                        onAirplaneModeTitle = "No Internet" // Optional
+                        onAirplaneModeMessage = "You have turned on the airplane mode." // Optional
+                        pleaseTurnOffText = "Please turn off" // Optional
+                        airplaneModeOffButtonText = "Airplane mode" // Optional
+                        showAirplaneModeOffButtons = true // Optional
                     }
                 }.build()
+
             }
 
             Constants.TYPE_DIALOG_SIGNAL -> {
+
                 noInternetDialogSignal = NoInternetDialogSignal.Builder(
                     this,
                     lifecycle
                 ).apply {
                     dialogProperties.apply {
-                        cancelable = true
+                        connectionCallback = object : ConnectionCallback { // Optional
+                            override fun hasActiveConnection(hasActiveConnection: Boolean) {
+                                // ...
+                            }
+                        }
+
+                        cancelable = false // Optional
+                        noInternetConnectionTitle = "No Internet" // Optional
+                        noInternetConnectionMessage =
+                            "Check your Internet connection and try again." // Optional
+                        showInternetOnButtons = true // Optional
+                        pleaseTurnOnText = "Please turn on" // Optional
+                        wifiOnButtonText = "Wifi" // Optional
+                        mobileDataOnButtonText = "Mobile data" // Optional
+
+                        onAirplaneModeTitle = "No Internet" // Optional
+                        onAirplaneModeMessage = "You have turned on the airplane mode." // Optional
+                        pleaseTurnOffText = "Please turn off" // Optional
+                        airplaneModeOffButtonText = "Airplane mode" // Optional
+                        showAirplaneModeOffButtons = true // Optional
                     }
                 }.build()
+
             }
 
             Constants.TYPE_SNACKBAR_FIRE -> {
+
                 noInternetSnackbarFire = NoInternetSnackbarFire.Builder(
                     binding.mainContainer,
                     lifecycle
                 ).apply {
                     snackbarProperties.apply {
-                        showActionToDismiss = true
+                        connectionCallback = object : ConnectionCallback { // Optional
+                            override fun hasActiveConnection(hasActiveConnection: Boolean) {
+                                // ...
+                            }
+                        }
+
+                        duration = Snackbar.LENGTH_INDEFINITE // Optional
+                        noInternetConnectionMessage = "No active Internet connection!" // Optional
+                        onAirplaneModeMessage = "You have turned on the airplane mode!" // Optional
+                        snackbarActionText = "Settings" // Optional
+                        showActionToDismiss = false // Optional
+                        snackbarDismissActionText = "OK" // Optional
                     }
                 }.build()
+
             }
         }
+
+        binding.fabGoBack.setOnClickListener { finish() }
     }
 
     override fun onStart() {
         super.onStart()
         Timber.d("onStart")
         Timber.d("lifecycle.currentState: ${lifecycle.currentState}")
+
+        noInternetDialogPendulum?.show()
+        noInternetDialogSignal?.show()
+        noInternetSnackbarFire?.show()
     }
 
     override fun onResume() {
@@ -78,9 +141,17 @@ class KotlinExampleActivity : AppCompatActivity() {
         Timber.d("onResume")
         Timber.d("lifecycle.currentState: ${lifecycle.currentState}")
 
+        noInternetDialogPendulum?.show()
+        noInternetDialogSignal?.show()
+        noInternetSnackbarFire?.show()
+
         binding.root.postDelayed({
             Timber.d("postDelayed")
             Timber.d("lifecycle.currentState: ${lifecycle.currentState}")
+
+            noInternetDialogPendulum?.show()
+            noInternetDialogSignal?.show()
+            noInternetSnackbarFire?.show()
         }, 1000)
     }
 

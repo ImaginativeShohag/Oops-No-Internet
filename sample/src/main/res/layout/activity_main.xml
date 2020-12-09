@@ -86,7 +86,7 @@
         android:layout_margin="16dp"
         android:contentDescription="Toggle Theme"
         app:backgroundTint="?attr/colorSurface"
-        app:srcCompat="@drawable/ic_baseline_wb_sunny_24"
+        app:srcCompat="@drawable/ic_round_wb_sunny_24"
         app:tint="?attr/colorOnSurface" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

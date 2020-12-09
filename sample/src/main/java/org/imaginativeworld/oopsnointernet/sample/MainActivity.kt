@@ -6,8 +6,10 @@ import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import org.imaginativeworld.oopsnointernet.sample.databinding.ActivityMainBinding
 
+// todo: bug: if internet turned on: the components is showing!!! -_-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -16,10 +18,27 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Init views
+        if (isNightMode()) {
+            binding.fabThemeToggle.setImageDrawable(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.ic_round_bedtime_24
+                )
+            )
+        } else {
+            binding.fabThemeToggle.setImageDrawable(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.ic_round_wb_sunny_24
+                )
+            )
+        }
+
+        // Init listeners
         binding.radioGroup.setOnCheckedChangeListener { _, checkedId ->
 
             if (checkedId == R.id.radio_dialog_pendulum) {
@@ -34,13 +53,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.fabThemeToggle.setOnClickListener {
 
-            val isNightTheme = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-
-            when (isNightTheme) {
-                Configuration.UI_MODE_NIGHT_YES ->
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                Configuration.UI_MODE_NIGHT_NO ->
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            if (isNightMode()) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             }
 
         }
@@ -62,5 +78,9 @@ class MainActivity : AppCompatActivity() {
                 })
 
         }
+    }
+
+    private fun isNightMode(): Boolean {
+        return resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
     }
 }

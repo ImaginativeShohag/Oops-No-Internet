@@ -2,23 +2,32 @@ package org.imaginativeworld.oopsnointernet.sample;
 
 
 import android.os.Bundle;
-import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
+
+import org.imaginativeworld.oopsnointernet.callbacks.ConnectionCallback;
+import org.imaginativeworld.oopsnointernet.dialogs.pendulum.DialogPropertiesPendulum;
+import org.imaginativeworld.oopsnointernet.dialogs.pendulum.NoInternetDialogPendulum;
+import org.imaginativeworld.oopsnointernet.dialogs.signal.DialogPropertiesSignal;
+import org.imaginativeworld.oopsnointernet.dialogs.signal.NoInternetDialogSignal;
 import org.imaginativeworld.oopsnointernet.sample.databinding.ActivityJavaExampleBinding;
+import org.imaginativeworld.oopsnointernet.snackbars.fire.NoInternetSnackbarFire;
+import org.imaginativeworld.oopsnointernet.snackbars.fire.SnackbarPropertiesFire;
 
 public class JavaExampleActivity extends AppCompatActivity {
 
     private ActivityJavaExampleBinding binding;
 
-    // No Internet Dialog
-//    private NoInternetDialog noInternetDialog;
+    // No Internet Dialog: Pendulum
+    private NoInternetDialogPendulum noInternetDialogPendulum;
 
-    // No Internet Snackbar
-//    private NoInternetSnackbar noInternetSnackbar;
+    // No Internet Dialog: Signal
+    private NoInternetDialogSignal noInternetDialogSignal;
 
-    private int selectedRadioId = R.id.radio_dialog_pendulum;
+    // No Internet Snackbar: Fire
+    private NoInternetSnackbarFire noInternetSnackbarFire;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,104 +35,196 @@ public class JavaExampleActivity extends AppCompatActivity {
         binding = ActivityJavaExampleBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
+        String type = getIntent().getStringExtra(Constants.KEY_TYPE);
 
-                selectedRadioId = checkedId;
+        switch (type) {
+            case Constants.TYPE_DIALOG_PENDULUM: {
 
-                init();
+                NoInternetDialogPendulum.Builder builder = new NoInternetDialogPendulum.Builder(
+                        this,
+                        getLifecycle()
+                );
+
+                DialogPropertiesPendulum properties = builder.getDialogProperties();
+
+                properties.setConnectionCallback(new ConnectionCallback() { // Optional
+                    @Override
+                    public void hasActiveConnection(boolean hasActiveConnection) {
+                        // ...
+                    }
+                });
+
+                properties.setCancelable(false); // Optional
+                properties.setNoInternetConnectionTitle("No Internet"); // Optional
+                properties.setNoInternetConnectionMessage("Check your Internet connection and try again"); // Optional
+                properties.setShowInternetOnButtons(true); // Optional
+                properties.setPleaseTurnOnText("Please turn on"); // Optional
+                properties.setWifiOnButtonText("Wifi"); // Optional
+                properties.setMobileDataOnButtonText("Mobile data"); // Optional
+
+                properties.setOnAirplaneModeTitle("No Internet"); // Optional
+                properties.setOnAirplaneModeMessage("You have turned on the airplane mode."); // Optional
+                properties.setPleaseTurnOffText("Please turn off"); // Optional
+                properties.setAirplaneModeOffButtonText("Airplane mode"); // Optional
+                properties.setShowAirplaneModeOffButtons(true); // Optional
+
+                noInternetDialogPendulum = builder.build();
 
             }
-        });
+            break;
+
+            case Constants.TYPE_DIALOG_SIGNAL: {
+
+                NoInternetDialogSignal.Builder builder = new NoInternetDialogSignal.Builder(
+                        this,
+                        getLifecycle()
+                );
+
+                DialogPropertiesSignal properties = builder.getDialogProperties();
+
+                properties.setConnectionCallback(new ConnectionCallback() { // Optional
+                    @Override
+                    public void hasActiveConnection(boolean hasActiveConnection) {
+                        // ...
+                    }
+                });
+
+                properties.setCancelable(false); // Optional
+                properties.setNoInternetConnectionTitle("No Internet"); // Optional
+                properties.setNoInternetConnectionMessage("Check your Internet connection and try again"); // Optional
+                properties.setShowInternetOnButtons(true); // Optional
+                properties.setPleaseTurnOnText("Please turn on"); // Optional
+                properties.setWifiOnButtonText("Wifi"); // Optional
+                properties.setMobileDataOnButtonText("Mobile data"); // Optional
+
+                properties.setOnAirplaneModeTitle("No Internet"); // Optional
+                properties.setOnAirplaneModeMessage("You have turned on the airplane mode."); // Optional
+                properties.setPleaseTurnOffText("Please turn off"); // Optional
+                properties.setAirplaneModeOffButtonText("Airplane mode"); // Optional
+                properties.setShowAirplaneModeOffButtons(true); // Optional
+
+                noInternetDialogSignal = builder.build();
+
+            }
+            break;
+
+            case Constants.TYPE_SNACKBAR_FIRE: {
+
+                NoInternetSnackbarFire.Builder builder = new NoInternetSnackbarFire.Builder(
+                        binding.mainContainer,
+                        getLifecycle()
+                );
+
+                SnackbarPropertiesFire properties = builder.getSnackbarProperties();
+
+                properties.setConnectionCallback(new ConnectionCallback() { // Optional
+                    @Override
+                    public void hasActiveConnection(boolean hasActiveConnection) {
+                        // ...
+                    }
+                });
+
+                properties.setDuration(Snackbar.LENGTH_INDEFINITE); // Optional
+                properties.setNoInternetConnectionMessage("No active Internet connection!"); // Optional
+                properties.setOnAirplaneModeMessage("You have turned on the airplane mode!"); // Optional
+                properties.setSnackbarActionText("Settings"); // Optional
+                properties.setShowActionToDismiss(false); // Optional
+                properties.setSnackbarDismissActionText("OK"); // Optional
+
+                noInternetSnackbarFire = builder.build();
+
+            }
+            break;
+        }
+
+        binding.fabGoBack.setOnClickListener((v) -> finish());
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (noInternetDialogPendulum != null) {
+            noInternetDialogPendulum.show();
+        }
+        if (noInternetDialogSignal != null) {
+            noInternetDialogSignal.show();
+        }
+        if (noInternetSnackbarFire != null) {
+            noInternetSnackbarFire.show();
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        init();
-    }
-
-    private void init() {
-
-        switch (selectedRadioId) {
-
-//            case R.id.radio_dialog:
-
-//                if (noInternetSnackbar != null) {
-//                    noInternetSnackbar.destroy();
-//                }
-
-                // No Internet Dialog
-//                NoInternetDialog.Builder builder1 = new NoInternetDialog.Builder(this);
-//
-//                builder1.setConnectionCallback(new ConnectionCallback() { // Optional
-//                    @Override
-//                    public void hasActiveConnection(boolean hasActiveConnection) {
-//                        // ...
-//                    }
-//                });
-//                builder1.setCancelable(false); // Optional
-//                builder1.setNoInternetConnectionTitle("No Internet"); // Optional
-//                builder1.setNoInternetConnectionMessage("Check your Internet connection and try again"); // Optional
-//                builder1.setShowInternetOnButtons(true); // Optional
-//                builder1.setPleaseTurnOnText("Please turn on"); // Optional
-//                builder1.setWifiOnButtonText("Wifi"); // Optional
-//                builder1.setMobileDataOnButtonText("Mobile data"); // Optional
-//
-//                builder1.setOnAirplaneModeTitle("No Internet"); // Optional
-//                builder1.setOnAirplaneModeMessage("You have turned on the airplane mode."); // Optional
-//                builder1.setPleaseTurnOffText("Please turn off"); // Optional
-//                builder1.setAirplaneModeOffButtonText("Airplane mode"); // Optional
-//                builder1.setShowAirplaneModeOffButtons(true); // Optional
-//
-//                noInternetDialog = builder1.build();
-
-//                break;
-
-//            case R.id.radio_snackbar:
-
-//                if (noInternetDialog != null) {
-//                    noInternetDialog.destroy();
-//                }
-
-                // No Internet Snackbar
-//                NoInternetSnackbar.Builder builder2 = new NoInternetSnackbar.Builder(this, (ViewGroup) findViewById(android.R.id.content));
-//
-//                builder2.setConnectionCallback(new ConnectionCallback() { // Optional
-//                    @Override
-//                    public void hasActiveConnection(boolean hasActiveConnection) {
-//                        // ...
-//                    }
-//                });
-//                builder2.setIndefinite(true); // Optional
-//                builder2.setNoInternetConnectionMessage("No active Internet connection!"); // Optional
-//                builder2.setOnAirplaneModeMessage("You have turned on the airplane mode!"); // Optional
-//                builder2.setSnackbarActionText("Settings");
-//                builder2.setShowActionToDismiss(false);
-//                builder2.setSnackbarDismissActionText("OK");
-//
-//                noInternetSnackbar = builder2.build();
-
-//                break;
-
+        if (noInternetDialogPendulum != null) {
+            noInternetDialogPendulum.show();
+        }
+        if (noInternetDialogSignal != null) {
+            noInternetDialogSignal.show();
+        }
+        if (noInternetSnackbarFire != null) {
+            noInternetSnackbarFire.show();
         }
 
+        binding.getRoot().postDelayed(() -> {
+            if (noInternetDialogPendulum != null) {
+                noInternetDialogPendulum.show();
+            }
+            if (noInternetDialogSignal != null) {
+                noInternetDialogSignal.show();
+            }
+            if (noInternetSnackbarFire != null) {
+                noInternetSnackbarFire.show();
+            }
+        }, 1000);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        // No Internet Dialog
-//        if (noInternetDialog != null) {
-//            noInternetDialog.destroy();
-//        }
+        if (noInternetDialogPendulum != null) {
+            noInternetDialogPendulum.show();
+        }
+        if (noInternetDialogSignal != null) {
+            noInternetDialogSignal.show();
+        }
+        if (noInternetSnackbarFire != null) {
+            noInternetSnackbarFire.show();
+        }
+    }
 
-        // No Internet Snackbar
-//        if (noInternetSnackbar != null) {
-//            noInternetSnackbar.destroy();
-//        }
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if (noInternetDialogPendulum != null) {
+            noInternetDialogPendulum.show();
+        }
+        if (noInternetDialogSignal != null) {
+            noInternetDialogSignal.show();
+        }
+        if (noInternetSnackbarFire != null) {
+            noInternetSnackbarFire.show();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (noInternetDialogPendulum != null) {
+            noInternetDialogPendulum.show();
+        }
+        if (noInternetDialogSignal != null) {
+            noInternetDialogSignal.show();
+        }
+        if (noInternetSnackbarFire != null) {
+            noInternetSnackbarFire.show();
+        }
     }
 }

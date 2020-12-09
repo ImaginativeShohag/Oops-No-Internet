@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Oops! No Internet! Sample</string>
+    <string name="go_back">Go back</string>
 </resources>
