@@ -6,13 +6,15 @@ import com.google.android.material.snackbar.Snackbar
 import org.imaginativeworld.oopsnointernet.callbacks.ConnectionCallback
 import org.imaginativeworld.oopsnointernet.dialogs.pendulum.NoInternetDialogPendulum
 import org.imaginativeworld.oopsnointernet.dialogs.signal.NoInternetDialogSignal
-import org.imaginativeworld.oopsnointernet.sample.databinding.ActivityKotlinExampleBinding
+import org.imaginativeworld.oopsnointernet.sample.databinding.ActivityTestBinding
 import org.imaginativeworld.oopsnointernet.snackbars.fire.NoInternetSnackbarFire
 import timber.log.Timber
 
-class KotlinExampleActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityKotlinExampleBinding
+/**
+ * Note: This activity is only for testing purposes. Ignore it.
+ */
+class TestActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityTestBinding
 
     // No Internet Dialog: Pendulum
     private var noInternetDialogPendulum: NoInternetDialogPendulum? = null
@@ -28,7 +30,7 @@ class KotlinExampleActivity : AppCompatActivity() {
         Timber.d("onCreate")
         Timber.d("lifecycle.currentState: ${lifecycle.currentState}")
 
-        binding = ActivityKotlinExampleBinding.inflate(layoutInflater)
+        binding = ActivityTestBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val type = intent.getStringExtra(Constants.KEY_TYPE)
@@ -124,5 +126,64 @@ class KotlinExampleActivity : AppCompatActivity() {
         }
 
         binding.fabGoBack.setOnClickListener { finish() }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Timber.d("onStart")
+        Timber.d("lifecycle.currentState: ${lifecycle.currentState}")
+
+        noInternetDialogPendulum?.show()
+        noInternetDialogSignal?.show()
+        noInternetSnackbarFire?.show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Timber.d("onResume")
+        Timber.d("lifecycle.currentState: ${lifecycle.currentState}")
+
+        noInternetDialogPendulum?.show()
+        noInternetDialogSignal?.show()
+        noInternetSnackbarFire?.show()
+
+        binding.root.postDelayed({
+            Timber.d("postDelayed")
+            Timber.d("lifecycle.currentState: ${lifecycle.currentState}")
+
+            noInternetDialogPendulum?.show()
+            noInternetDialogSignal?.show()
+            noInternetSnackbarFire?.show()
+        }, 1000)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Timber.d("onPause")
+        Timber.d("lifecycle.currentState: ${lifecycle.currentState}")
+
+        noInternetDialogPendulum?.show()
+        noInternetDialogSignal?.show()
+        noInternetSnackbarFire?.show()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Timber.d("onStop")
+        Timber.d("lifecycle.currentState: ${lifecycle.currentState}")
+
+        noInternetDialogPendulum?.show()
+        noInternetDialogSignal?.show()
+        noInternetSnackbarFire?.show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Timber.d("onDestroy")
+        Timber.d("lifecycle.currentState: ${lifecycle.currentState}")
+
+        noInternetDialogPendulum?.show()
+        noInternetDialogSignal?.show()
+        noInternetSnackbarFire?.show()
     }
 }

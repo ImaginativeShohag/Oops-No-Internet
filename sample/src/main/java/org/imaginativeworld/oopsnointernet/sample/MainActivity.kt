@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import org.imaginativeworld.oopsnointernet.sample.databinding.ActivityMainBinding
 
-// todo: bug: if internet turned on: the components is showing!!! -_-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

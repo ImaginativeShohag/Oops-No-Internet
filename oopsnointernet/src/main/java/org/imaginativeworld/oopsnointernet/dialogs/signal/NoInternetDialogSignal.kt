@@ -33,6 +33,15 @@ class NoInternetDialogSignal private constructor(
         // 320dp width, 16dp*2 margin
         window?.fixWidth(320, 32)
 
+        // Init texts
+        binding.tvPleaseTurnOn.text = dialogProperties.pleaseTurnOnText
+        binding.btnWifiOn.text = dialogProperties.wifiOnButtonText
+        binding.btnMobileDataOn.text = dialogProperties.mobileDataOnButtonText
+
+        binding.tvPleaseTurnOff.text = dialogProperties.pleaseTurnOffText
+        binding.btnAirplaneOff.text = dialogProperties.airplaneModeOffButtonText
+
+        // Init views for animations
         binding.imgCloudOne.translationX = -1000F
         binding.imgCloudTwo.translationX = -1000F
         binding.imgCloudThree.translationX = -1000F

@@ -2,6 +2,7 @@ package org.imaginativeworld.oopsnointernet.dialogs.pendulum
 
 import android.app.Activity
 import android.view.View
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -29,6 +30,14 @@ class NoInternetDialogPendulum private constructor(
     override fun initView() {
         // 320dp width, 16dp*2 margin
         window?.fixWidth(320, 32)
+
+        // Init texts
+        binding.tvPleaseTurnOn.text = dialogProperties.pleaseTurnOnText
+        binding.btnWifiOn.text = dialogProperties.wifiOnButtonText
+        binding.btnMobileDataOn.text = dialogProperties.mobileDataOnButtonText
+
+        binding.tvPleaseTurnOff.text = dialogProperties.pleaseTurnOffText
+        binding.btnAirplaneOff.text = dialogProperties.airplaneModeOffButtonText
 
         initListeners()
     }
@@ -85,13 +94,21 @@ class NoInternetDialogPendulum private constructor(
     }
 
     private fun initAnimations() {
-        binding.noInternetImg1.animation = AnimationUtils.loadAnimation(activity, R.anim.wave_1)
-        binding.noInternetImg2.animation = AnimationUtils.loadAnimation(activity, R.anim.wave_2)
+        binding.noInternetImg1.animation =
+            AnimationUtils.loadAnimation(activity, R.anim.wave_1).apply {
+                interpolator = AccelerateDecelerateInterpolator()
+            }
+        binding.noInternetImg2.animation =
+            AnimationUtils.loadAnimation(activity, R.anim.wave_2).apply {
+                interpolator = AccelerateDecelerateInterpolator()
+            }
 
         if (NoInternetUtils.isAirplaneModeOn(activity)) {
 
             val airplaneStart = AnimationUtils.loadAnimation(activity, R.anim.airplane_start)
+            airplaneStart.interpolator = AccelerateDecelerateInterpolator()
             val airplaneEnd = AnimationUtils.loadAnimation(activity, R.anim.airplane_end)
+            airplaneEnd.interpolator = AccelerateDecelerateInterpolator()
 
             airplaneStart.setAnimationListener(object : Animation.AnimationListener {
                 override fun onAnimationRepeat(animation: Animation?) {}

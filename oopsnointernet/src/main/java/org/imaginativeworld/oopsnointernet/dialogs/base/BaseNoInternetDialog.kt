@@ -87,7 +87,12 @@ abstract class BaseNoInternetDialog(
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
-
+    /**
+     * Show the dialog.
+     *
+     * Note: We didn't check the Internet connection in this function.
+     * So, call it if you know what you are doing.
+     */
     override fun show() {
         LogUtils.d(TAG, "show")
 

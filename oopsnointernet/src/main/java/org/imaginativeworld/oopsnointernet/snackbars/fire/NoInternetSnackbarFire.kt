@@ -84,9 +84,9 @@ class NoInternetSnackbarFire(
                         snackbarProperties.snackbarActionText
                     ) {
                         if (isAirplaneModeOn) {
-                            NoInternetUtils.turnOffAirplaneMode(context.applicationContext)
+                            NoInternetUtils.turnOffAirplaneMode(context)
                         } else {
-                            NoInternetUtils.turnOnMobileData(context.applicationContext)
+                            NoInternetUtils.turnOnMobileData(context)
                         }
                     }
                 }

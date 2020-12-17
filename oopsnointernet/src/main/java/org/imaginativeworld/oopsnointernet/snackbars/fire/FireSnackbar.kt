@@ -1,12 +1,10 @@
 package org.imaginativeworld.oopsnointernet.snackbars.fire
 
-import android.content.Context
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.MarginLayoutParams
-import android.view.accessibility.AccessibilityManager
 import android.widget.FrameLayout
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
@@ -21,14 +19,9 @@ class FireSnackbar private constructor(
     callback: com.google.android.material.snackbar.ContentViewCallback
 ) : BaseTransientBottomBar<FireSnackbar>(parent, binding.root, callback) {
 
-    @Nullable
-    private var accessibilityManager: AccessibilityManager? = null
     private var hasAction: Boolean = false
 
     init {
-        accessibilityManager = parent.context
-            .getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
-
         getView().setBackgroundColor(
             ContextCompat.getColor(
                 view.context,
