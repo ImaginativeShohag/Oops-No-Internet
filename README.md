@@ -1,43 +1,70 @@
 # Oops! No Internet!
 
-A simple no Internet dialog and snackbar, which will automatically 
-appear and disappear based on Internet connectivity status.
+Simple no Internet dialogs and snackbar, which will automatically appear and disappear based on Internet connectivity status.
 
-[![](https://jitpack.io/v/ImaginativeShohag/Oops-No-Internet.svg)](https://jitpack.io/#ImaginativeShohag/Oops-No-Internet)
-[![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-Oops!%20No%20Internet!-green.svg?style=flat )]( https://android-arsenal.com/details/1/8005 )
+[![Developer](https://img.shields.io/badge/Maintainer-ImaginativeShohag-green)](https://github.com/ImaginativeShohag)
+[![GitHub release](https://img.shields.io/github/release/ImaginativeShohag/Oops-No-Internet.svg)](https://github.com/ImaginativeShohag/Oops-No-Internet/releases)
+[![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-Oops!%20No%20Internet!-green.svg?style=flat)]( https://android-arsenal.com/details/1/8005 )
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
 
 ## Previews
 
-|![No Internet Dialog](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/dialog_no_internet.gif)|![Airplane Mode Dialog](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/dialog_airplane_mode.gif)|
-|---|---|
-|![No Internet Snackbar](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/snackbar_no_internet.jpg)|![Airplane Mode Snackbar](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/snackbar_airplane_mode.jpg)|
+### Preview of `NoInternetDialogSignal`:
+
+|                           Day Mode                           |                   Day Mode (Airplane Mode)                   |                          Night Mode                          |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| ![No Internet Dialog: Signal](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/dialog_signal_1.gif) | ![No Internet Dialog: Signal](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/dialog_signal_2.gif) | ![Airplane Mode Dialog: Signal](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/dialog_signal_3.gif) |
+
+### Preview of `NoInternetDialogPendulum`:
+
+|                           Day Mode                           |                   Day Mode (Airplane Mode)                   |                          Night Mode                          |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| ![No Internet Dialog: Pendulum](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/dialog_pendulum_1.gif) | ![No Internet Dialog: Pendulum](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/dialog_pendulum_2.gif) | ![Airplane Mode Dialog: Pendulum](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/dialog_pendulum_3.gif) |
+
+### Preview of `NoInternetSnackbarFire`:
+
+|                           Day Mode                           |                   Day Mode (Airplane Mode)                   |                          Night Mode                          |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| ![No Internet Snackbar: Fire](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/snackbar_fire_1.png) | ![No Internet Dialog: Fire](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/snackbar_fire_2.png) | ![Airplane Mode Snackbar: Fire](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/snackbar_fire_3.png) |
+
+## Types
+
+The library provides `NoInternetObserveComponent`, a simple lifecycle component. The purpose of the component is to provide an easy way to notify about the  Internet connection connectivity change. It gives a simple interface to connect with any elements (`Dialog`, `Snackbar`, etc.) with ease.
+The library currently provides two `Dialogs` and a `Snackbar` out of the box for no Internet notification.
+
+### No Internet Dialogs
+
+* `NoInternetDialogPendulum` (formerly just `NoInternetDialog`)
+* `NoInternetDialogSignal`
+
+### No Internet Snackbar
+
+* `NoInternetSnackbarFire`
 
 ## Usage
 
 ### Dependency
 
-#### Step 1. Add the JitPack repository to your build file
-
-Add it to your root **build.gradle** at the end of repositories:
+#### Add the followings to your project level `build.gradle` file.
 
 ```groovy
-allprojects {
-    repositories {
-        // ...
-        maven { url 'https://jitpack.io' }
+android {
+
+    // ...
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
-```
 
-#### Step 2. Add the dependency
-
-```groovy
 dependencies {
-    // Material Components for Android
-    implementation 'com.google.android.material:material:1.1.0'
+    // ...
+    
+    // Material Components for Android. Replace the version with the latest version of Material Components library.
+    implementation 'com.google.android.material:material:1.2.1'
 
-    implementation 'com.github.ImaginativeShohag:Oops-No-Internet:v1.1.5'
+    implementation 'org.imaginativeworld.oopsnointernet:oopsnointernet:2.0.0'
 }
 ```
 
@@ -49,40 +76,37 @@ dependencies {
 
 ### Finally
 
-To use the `NoInternetDialog` and/or `NoInternetSnackbar`, use the builder and initialize it in `onResume()` and finally 
-destroy it in `onPause()`.
+Just initialize any of the `NoInternetDialog*` and/or `NoInternetSnackbar*` using the builder in `onCreate()`, thats all! :)
 
-The `NoInternetDialog` and/or `NoInternetSnackbar` will then automatically appear when no active Internet connection found and disappear otherwise.
+The `NoInternetDialog*` and/or `NoInternetSnackbar*` will then automatically appear when no active Internet connection found and disappear otherwise.
 
-Customizable attributes with their default values are given in the following example.
+Customizable attributes with their default values are given in the following examples.
 
 ```kotlin
 // Kotlin
 class MainActivity : AppCompatActivity() {
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        
+        // ...
 
-    // No Internet Dialog
-    private var noInternetDialog: NoInternetDialog? = null
-
-    // No Internet Snackbar
-    private var noInternetSnackbar: NoInternetSnackbar? = null
-
-    // ...
-
-    override fun onResume() {
-        super.onResume()
-
-        // No Internet Dialog
-        noInternetDialog = NoInternetDialog.Builder(this)
-            .apply {
+        // No Internet Dialog: Pendulum
+		NoInternetDialogPendulum.Builder(
+            this,
+            lifecycle
+        ).apply {
+            dialogProperties.apply {
                 connectionCallback = object : ConnectionCallback { // Optional
                     override fun hasActiveConnection(hasActiveConnection: Boolean) {
                         // ...
                     }
                 }
+
                 cancelable = false // Optional
                 noInternetConnectionTitle = "No Internet" // Optional
                 noInternetConnectionMessage =
-                    "Check your Internet connection and try again." // Optional
+                "Check your Internet connection and try again." // Optional
                 showInternetOnButtons = true // Optional
                 pleaseTurnOnText = "Please turn on" // Optional
                 wifiOnButtonText = "Wifi" // Optional
@@ -94,35 +118,57 @@ class MainActivity : AppCompatActivity() {
                 airplaneModeOffButtonText = "Airplane mode" // Optional
                 showAirplaneModeOffButtons = true // Optional
             }
-            .build()
+        }.build()
 
-        // No Internet Snackbar
-        noInternetSnackbar =
-            NoInternetSnackbar.Builder(this, findViewById(android.R.id.content))
-                .apply {
-                    connectionCallback = object : ConnectionCallback { // Optional
-                        override fun hasActiveConnection(hasActiveConnection: Boolean) {
-                            // ...
-                        }
+        // No Internet Dialog: Signal
+        NoInternetDialogSignal.Builder(
+            this,
+            lifecycle
+        ).apply {
+            dialogProperties.apply {
+                connectionCallback = object : ConnectionCallback { // Optional
+                    override fun hasActiveConnection(hasActiveConnection: Boolean) {
+                        // ...
                     }
-                    indefinite = true // Optional
-                    noInternetConnectionMessage = "No active Internet connection!" // Optional
-                    onAirplaneModeMessage = "You have turned on the airplane mode!" // Optional
-                    snackbarActionText = "Settings" // Optional
-                    showActionToDismiss = false // Optional
-                    snackbarDismissActionText = "OK" // Optional
                 }
-                .build()
-    }
 
-    override fun onPause() {
-        super.onPause()
+                cancelable = false // Optional
+                noInternetConnectionTitle = "No Internet" // Optional
+                noInternetConnectionMessage =
+                "Check your Internet connection and try again." // Optional
+                showInternetOnButtons = true // Optional
+                pleaseTurnOnText = "Please turn on" // Optional
+                wifiOnButtonText = "Wifi" // Optional
+                mobileDataOnButtonText = "Mobile data" // Optional
 
-        // No Internet Dialog
-        noInternetDialog?.destroy()
+                onAirplaneModeTitle = "No Internet" // Optional
+                onAirplaneModeMessage = "You have turned on the airplane mode." // Optional
+                pleaseTurnOffText = "Please turn off" // Optional
+                airplaneModeOffButtonText = "Airplane mode" // Optional
+                showAirplaneModeOffButtons = true // Optional
+            }
+        }.build()
+        
+        // No Internet Snackbar: Fire
+        NoInternetSnackbarFire.Builder(
+            binding.mainContainer,
+            lifecycle
+        ).apply {
+            snackbarProperties.apply {
+                connectionCallback = object : ConnectionCallback { // Optional
+                    override fun hasActiveConnection(hasActiveConnection: Boolean) {
+                        // ...
+                    }
+                }
 
-        // No Internet Snackbar
-        noInternetSnackbar?.destroy()
+                duration = Snackbar.LENGTH_INDEFINITE // Optional
+                noInternetConnectionMessage = "No active Internet connection!" // Optional
+                onAirplaneModeMessage = "You have turned on the airplane mode!" // Optional
+                snackbarActionText = "Settings" // Optional
+                showActionToDismiss = false // Optional
+                snackbarDismissActionText = "OK" // Optional
+            }
+        }.build()
     }
 }
 ```
@@ -130,77 +176,98 @@ class MainActivity : AppCompatActivity() {
 ```java
 // Java
 public class Main2Activity extends AppCompatActivity {
-
-    // No Internet Dialog
-    NoInternetDialog noInternetDialog;
-
-    // No Internet Snackbar
-    NoInternetSnackbar noInternetSnackbar;
-
-    // ...
     
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        
+        // ...
+        
+        // No Internet Dialog: Pendulum
+		NoInternetDialogPendulum.Builder builder = new NoInternetDialogPendulum.Builder(
+            this,
+            getLifecycle()
+        );
 
-        // No Internet Dialog
-        NoInternetDialog.Builder builder1 = new NoInternetDialog.Builder(this);
+        DialogPropertiesPendulum properties = builder.getDialogProperties();
 
-        builder1.setConnectionCallback(new ConnectionCallback() { // Optional
+        properties.setConnectionCallback(new ConnectionCallback() { // Optional
             @Override
             public void hasActiveConnection(boolean hasActiveConnection) {
                 // ...
             }
         });
-        builder1.setCancelable(false); // Optional
-        builder1.setNoInternetConnectionTitle("No Internet"); // Optional
-        builder1.setNoInternetConnectionMessage("Check your Internet connection and try again"); // Optional
-        builder1.setShowInternetOnButtons(true); // Optional
-        builder1.setPleaseTurnOnText("Please turn on"); // Optional
-        builder1.setWifiOnButtonText("Wifi"); // Optional
-        builder1.setMobileDataOnButtonText("Mobile data"); // Optional
 
-        builder1.setOnAirplaneModeTitle("No Internet"); // Optional
-        builder1.setOnAirplaneModeMessage("You have turned on the airplane mode."); // Optional
-        builder1.setPleaseTurnOffText("Please turn off"); // Optional
-        builder1.setAirplaneModeOffButtonText("Airplane mode"); // Optional
-        builder1.setShowAirplaneModeOffButtons(true); // Optional
+        properties.setCancelable(false); // Optional
+        properties.setNoInternetConnectionTitle("No Internet"); // Optional
+        properties.setNoInternetConnectionMessage("Check your Internet connection and try again"); // Optional
+        properties.setShowInternetOnButtons(true); // Optional
+        properties.setPleaseTurnOnText("Please turn on"); // Optional
+        properties.setWifiOnButtonText("Wifi"); // Optional
+        properties.setMobileDataOnButtonText("Mobile data"); // Optional
 
-        noInternetDialog = builder1.build();
+        properties.setOnAirplaneModeTitle("No Internet"); // Optional
+        properties.setOnAirplaneModeMessage("You have turned on the airplane mode."); // Optional
+        properties.setPleaseTurnOffText("Please turn off"); // Optional
+        properties.setAirplaneModeOffButtonText("Airplane mode"); // Optional
+        properties.setShowAirplaneModeOffButtons(true); // Optional
 
+        builder.build();
+        
+        // No Internet Dialog: Signal
+        NoInternetDialogSignal.Builder builder = new NoInternetDialogSignal.Builder(
+            this,
+            getLifecycle()
+        );
 
-        // No Internet Snackbar
-        NoInternetSnackbar.Builder builder2 = new NoInternetSnackbar.Builder(this, (ViewGroup) findViewById(android.R.id.content));
+        DialogPropertiesSignal properties = builder.getDialogProperties();
 
-        builder2.setConnectionCallback(new ConnectionCallback() { // Optional
+        properties.setConnectionCallback(new ConnectionCallback() { // Optional
             @Override
             public void hasActiveConnection(boolean hasActiveConnection) {
                 // ...
             }
         });
-        builder2.setIndefinite(true); // Optional
-        builder2.setNoInternetConnectionMessage("No active Internet connection!"); // Optional
-        builder2.setOnAirplaneModeMessage("You have turned on the airplane mode!"); // Optional
-        builder2.setSnackbarActionText("Settings");
-        builder2.setShowActionToDismiss(false);
-        builder2.setSnackbarDismissActionText("OK");
 
-        noInternetSnackbar = builder2.build();
-    }
+        properties.setCancelable(false); // Optional
+        properties.setNoInternetConnectionTitle("No Internet"); // Optional
+        properties.setNoInternetConnectionMessage("Check your Internet connection and try again"); // Optional
+        properties.setShowInternetOnButtons(true); // Optional
+        properties.setPleaseTurnOnText("Please turn on"); // Optional
+        properties.setWifiOnButtonText("Wifi"); // Optional
+        properties.setMobileDataOnButtonText("Mobile data"); // Optional
 
-    @Override
-    protected void onPause() {
-        super.onPause();
+        properties.setOnAirplaneModeTitle("No Internet"); // Optional
+        properties.setOnAirplaneModeMessage("You have turned on the airplane mode."); // Optional
+        properties.setPleaseTurnOffText("Please turn off"); // Optional
+        properties.setAirplaneModeOffButtonText("Airplane mode"); // Optional
+        properties.setShowAirplaneModeOffButtons(true); // Optional
 
-        // No Internet Dialog
-        if (noInternetDialog != null) {
-            noInternetDialog.destroy();
-        }
+        builder.build();
+        
+		// No Internet Snackbar: Fire
+        NoInternetSnackbarFire.Builder builder = new NoInternetSnackbarFire.Builder(
+            binding.mainContainer,
+            getLifecycle()
+        );
 
-        // No Internet Snackbar
-        if (noInternetSnackbar != null) {
-            noInternetSnackbar.destroy();
-        }
+        SnackbarPropertiesFire properties = builder.getSnackbarProperties();
+
+        properties.setConnectionCallback(new ConnectionCallback() { // Optional
+            @Override
+            public void hasActiveConnection(boolean hasActiveConnection) {
+                // ...
+            }
+        });
+
+        properties.setDuration(Snackbar.LENGTH_INDEFINITE); // Optional
+        properties.setNoInternetConnectionMessage("No active Internet connection!"); // Optional
+        properties.setOnAirplaneModeMessage("You have turned on the airplane mode!"); // Optional
+        properties.setSnackbarActionText("Settings"); // Optional
+        properties.setShowActionToDismiss(false); // Optional
+        properties.setSnackbarDismissActionText("OK"); // Optional
+
+        builder.build();
     }
 }
 ```
@@ -216,6 +283,23 @@ Library name credit goes to Fahima Lamia Neha.
 The icons and images used in the sample project are from freepik.com and flaticon.com.
 
 ## Changelog
+
+### 2.0.0
+
+We move our library from **jitpack.io** to **maven** repository. So no need to add any repositories for using the library.
+
+We changed the file structures and re-right the whole library. So you have to do a little refactoring to use version 2 of the library. Just follow the samples, you will get it. Or add an issue if there any problem to migrate.
+
+The library now provides a simple lifecycle component for observing the Internet connection changes. It can be used with any kind of custom elements.
+
+We provide two out of the box dialogs and a snackbar implementation.
+
+Notable other changes:
+
+* **Changed:** Previous `NoInternetDialog` now `NoInternetDialogPendulum`.
+* **New:** New `NoInternetDialogSignal` dialog added.
+* **Removed:** `NoInternetSnackbar` removed.
+* **New:** New `NoInternetSnackbarFire` added.
 
 ### 1.1.4 & 1.1.5
 

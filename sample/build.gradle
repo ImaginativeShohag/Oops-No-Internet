@@ -59,6 +59,8 @@ dependencies {
 
     // Opps! No Internet! Library
     implementation project(":oopsnointernet")
+    // You will use the library like this:
+    // implementation 'org.imaginativeworld.oopsnointernet:oopsnointernet:x.x.x'
 
     // Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'

@@ -11,8 +11,8 @@ import org.imaginativeworld.oopsnointernet.databinding.DialogNoInternetSignalBin
 import org.imaginativeworld.oopsnointernet.dialogs.base.BaseNoInternetDialog
 import org.imaginativeworld.oopsnointernet.utils.NoInternetUtils
 import org.imaginativeworld.oopsnointernet.utils.fixWidth
+import kotlin.random.Random
 
-// todo #2 stop animation onStop
 class NoInternetDialogSignal private constructor(
     private val activity: Activity,
     lifecycle: Lifecycle,
@@ -41,11 +41,6 @@ class NoInternetDialogSignal private constructor(
         binding.tvPleaseTurnOff.text = dialogProperties.pleaseTurnOffText
         binding.btnAirplaneOff.text = dialogProperties.airplaneModeOffButtonText
 
-        // Init views for animations
-        binding.imgCloudOne.translationX = -1000F
-        binding.imgCloudTwo.translationX = -1000F
-        binding.imgCloudThree.translationX = -1000F
-
         initListeners()
     }
 
@@ -71,7 +66,24 @@ class NoInternetDialogSignal private constructor(
         valueAnimators.clear()
     }
 
+    /**
+     * Init/reset views for animations.
+     */
+    private fun initViewsForAnimation() {
+        // Signals
+        binding.circleViewOne.alpha = 0f
+        binding.circleViewTwo.alpha = 0f
+        binding.circleViewThree.alpha = 0f
+
+        // Clouds
+        binding.imgCloudOne.translationX = -1000F
+        binding.imgCloudTwo.translationX = -1000F
+        binding.imgCloudThree.translationX = -1000F
+    }
+
     private fun updateViews(isAirplaneModeOn: Boolean) {
+        initViewsForAnimation()
+
         if (isAirplaneModeOn) {
 
             binding.tvTitle.text = dialogProperties.onAirplaneModeTitle
@@ -120,7 +132,7 @@ class NoInternetDialogSignal private constructor(
             val dialogWidth = binding.root.width
 
             // ----------------------------------------------------------------
-            // Signal
+            // Signals
             // ----------------------------------------------------------------
             valueAnimators.add(ValueAnimator.ofFloat(0f, 0f, 1f).apply {
                 duration = 5000
@@ -222,9 +234,9 @@ class NoInternetDialogSignal private constructor(
                 -(dialogWidth * .6).toFloat()
             )
                 .apply {
-                    duration = 8000
+                    duration = Random.nextLong(8000, 16000)
                     repeatCount = ValueAnimator.INFINITE
-                    startDelay = 0
+                    startDelay = Random.nextLong(0, 5000)
                     interpolator = LinearInterpolator()
                     addUpdateListener {
 
@@ -239,9 +251,9 @@ class NoInternetDialogSignal private constructor(
                 -(dialogWidth * .6).toFloat()
             )
                 .apply {
-                    duration = 9000
+                    duration = Random.nextLong(8000, 16000)
                     repeatCount = ValueAnimator.INFINITE
-                    startDelay = 250
+                    startDelay = Random.nextLong(0, 5000)
                     interpolator = LinearInterpolator()
                     addUpdateListener {
 
@@ -256,9 +268,9 @@ class NoInternetDialogSignal private constructor(
                 -(dialogWidth * .6).toFloat()
             )
                 .apply {
-                    duration = 10000
+                    duration = Random.nextLong(8000, 16000)
                     repeatCount = ValueAnimator.INFINITE
-                    startDelay = 750
+                    startDelay = Random.nextLong(0, 5000)
                     interpolator = LinearInterpolator()
                     addUpdateListener {
 

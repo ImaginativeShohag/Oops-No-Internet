@@ -8,7 +8,6 @@ import org.imaginativeworld.oopsnointernet.dialogs.pendulum.NoInternetDialogPend
 import org.imaginativeworld.oopsnointernet.dialogs.signal.NoInternetDialogSignal
 import org.imaginativeworld.oopsnointernet.sample.databinding.ActivityKotlinExampleBinding
 import org.imaginativeworld.oopsnointernet.snackbars.fire.NoInternetSnackbarFire
-import timber.log.Timber
 
 class KotlinExampleActivity : AppCompatActivity() {
 
@@ -25,8 +24,6 @@ class KotlinExampleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Timber.d("onCreate")
-        Timber.d("lifecycle.currentState: ${lifecycle.currentState}")
 
         binding = ActivityKotlinExampleBinding.inflate(layoutInflater)
         setContentView(binding.root)
