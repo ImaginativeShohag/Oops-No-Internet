@@ -11,19 +11,19 @@ Simple no Internet dialogs and snackbar, which will automatically appear and dis
 
 ### Preview of `NoInternetDialogSignal`:
 
-|                           Day Mode                           |                   Day Mode (Airplane Mode)                   |                          Night Mode                          |
+|                           Day Mode                           |                   Day Mode (Airplane Mode)                   |                  Night Mode (Airplane Mode)                  |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | ![No Internet Dialog: Signal](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/dialog_signal_1.gif) | ![No Internet Dialog: Signal](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/dialog_signal_2.gif) | ![Airplane Mode Dialog: Signal](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/dialog_signal_3.gif) |
 
 ### Preview of `NoInternetDialogPendulum`:
 
-|                           Day Mode                           |                   Day Mode (Airplane Mode)                   |                          Night Mode                          |
+|                           Day Mode                           |                   Day Mode (Airplane Mode)                   |                  Night Mode (Airplane Mode)                  |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | ![No Internet Dialog: Pendulum](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/dialog_pendulum_1.gif) | ![No Internet Dialog: Pendulum](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/dialog_pendulum_2.gif) | ![Airplane Mode Dialog: Pendulum](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/dialog_pendulum_3.gif) |
 
 ### Preview of `NoInternetSnackbarFire`:
 
-|                           Day Mode                           |                   Day Mode (Airplane Mode)                   |                          Night Mode                          |
+|                           Day Mode                           |                   Day Mode (Airplane Mode)                   |                  Night Mode (Airplane Mode)                  |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | ![No Internet Snackbar: Fire](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/snackbar_fire_1.png) | ![No Internet Dialog: Fire](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/snackbar_fire_2.png) | ![Airplane Mode Snackbar: Fire](https://github.com/ImaginativeShohag/Oops-No-Internet/blob/master/images/snackbar_fire_3.png) |
 
@@ -245,7 +245,7 @@ public class Main2Activity extends AppCompatActivity {
 
         builder.build();
         
-		// No Internet Snackbar: Fire
+        // No Internet Snackbar: Fire
         NoInternetSnackbarFire.Builder builder = new NoInternetSnackbarFire.Builder(
             binding.mainContainer,
             getLifecycle()
