@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_container"
+    android:layout_width="320dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="226dp"
+            android:background="?attr/NoInternet_Dialog_Signal_topBottomShade"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="26dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <View
+                android:id="@+id/circle_view_one"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:background="?attr/NoInternet_Dialog_Signal_round"
+                android:scaleX="0"
+                android:scaleY="0"
+                tools:scaleX="1"
+                tools:scaleY="1" />
+
+            <View
+                android:id="@+id/circle_view_two"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:background="?attr/NoInternet_Dialog_Signal_round"
+                android:scaleX="0"
+                android:scaleY="0" />
+
+            <View
+                android:id="@+id/circle_view_three"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:background="?attr/NoInternet_Dialog_Signal_round"
+                android:scaleX="0"
+                android:scaleY="0" />
+
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/img_icon"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_no_internet_no_bg" />
+
+        <ImageView
+            android:id="@+id/img_cloud_one"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="?attr/NoInternet_Dialog_Signal_cloudColorOne" />
+
+        <ImageView
+            android:id="@+id/img_cloud_two"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="55dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="?attr/NoInternet_Dialog_Signal_cloudColorTwo" />
+
+        <ImageView
+            android:id="@+id/img_cloud_three"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="?attr/NoInternet_Dialog_Signal_cloudColorThree" />
+
+        <ImageView
+            android:id="@+id/img_airplane"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="60dp"
+            android:rotation="90"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_airplane"
+            app:tint="?attr/NoInternet_Dialog_Signal_airplaneColor" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center_horizontal"
+            android:text="@string/default_title"
+            android:textAllCaps="true"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_icon" />
+
+        <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center_horizontal"
+            android:text="@string/default_message"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+        <!-- Wifi/Data Mode -->
+
+        <TextView
+            android:id="@+id/tv_please_turn_on"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center_horizontal"
+            android:text="@string/please_turn_on"
+            android:textAllCaps="true"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_message" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_wifi_on"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="24dp"
+            android:text="@string/wifi"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="14sp"
+            app:cornerRadius="100dp"
+            app:icon="@drawable/ic_wifi"
+            app:iconSize="18dp"
+            app:iconTint="?attr/colorOnPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_mobile_data_on"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_please_turn_on" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_mobile_data_on"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp"
+            android:text="@string/mobile_data"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="14sp"
+            app:cornerRadius="100dp"
+            app:icon="@drawable/ic_swap_vert"
+            app:iconSize="18dp"
+            app:iconTint="?attr/colorOnPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_wifi_on"
+            app:layout_constraintTop_toBottomOf="@id/tv_please_turn_on" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_turn_on_internet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:constraint_referenced_ids="tv_please_turn_on,btn_wifi_on,btn_mobile_data_on" />
+
+        <!-- Airplane Mode -->
+
+        <TextView
+            android:id="@+id/tv_please_turn_off"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center_horizontal"
+            android:text="@string/please_turn_off"
+            android:textAllCaps="true"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_message"
+            tools:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_airplane_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="24dp"
+            android:text="@string/airplane_mode"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="14sp"
+            app:cornerRadius="100dp"
+            app:icon="@drawable/ic_airplanemode_inactive"
+            app:iconSize="18dp"
+            app:iconTint="?attr/colorOnPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_please_turn_off"
+            tools:visibility="gone" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_turn_off_airplane"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="tv_please_turn_off,btn_airplane_off"
+            tools:visibility="gone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

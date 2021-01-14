@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="NoInternet_Dialog_Pendulum_airplaneColor" format="color" />
+
+    <attr name="NoInternet_Dialog_Signal_airplaneColor" format="color" />
+    <attr name="NoInternet_Dialog_Signal_topBottomShade" format="reference" />
+    <attr name="NoInternet_Dialog_Signal_round" format="reference" />
+    <attr name="NoInternet_Dialog_Signal_cloudColorOne" format="reference" />
+    <attr name="NoInternet_Dialog_Signal_cloudColorTwo" format="reference" />
+    <attr name="NoInternet_Dialog_Signal_cloudColorThree" format="reference" />
+</resources>
