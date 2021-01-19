@@ -29,7 +29,7 @@ Simple no Internet dialogs and snackbar, which will automatically appear and dis
 
 ## Types
 
-The library provides `NoInternetObserveComponent`, a simple lifecycle component. The purpose of the component is to provide an easy way to notify about the  Internet connection connectivity change. It gives a simple interface to connect with any elements (`Dialog`, `Snackbar`, etc.) with ease.
+The library provides `NoInternetObserveComponent`, a simple lifecycle component. The purpose of the component is to provide an easy way to notify about the  Internet connection connectivity change. It gives a simple interface to connect with any elements (`Dialog`, `Snackbar`, etc.) with ease. You can also use the `BaseNoInternetDialog` class to easily create custom no Internet dialog.
 The library currently provides two `Dialogs` and a `Snackbar` out of the box for no Internet notification.
 
 ### No Internet Dialogs
@@ -296,6 +296,8 @@ We provide two out of the box dialogs and a snackbar implementation.
 
 Notable other changes:
 
+* **New:** `NoInternetObserveComponent` lifecycle component added.
+* **New:** Custom no Internet dialogs can be easily created using `BaseNoInternetDialog` class.
 * **Changed:** Previous `NoInternetDialog` now `NoInternetDialogPendulum`.
 * **New:** New `NoInternetDialogSignal` dialog added.
 * **Removed:** `NoInternetSnackbar` removed.
