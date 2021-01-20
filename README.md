@@ -29,7 +29,7 @@ Simple no Internet dialogs and snackbar, which will automatically appear and dis
 
 ## Types
 
-The library provides `NoInternetObserveComponent`, a simple lifecycle component. The purpose of the component is to provide an easy way to notify about the  Internet connection connectivity change. It gives a simple interface to connect with any elements (`Dialog`, `Snackbar`, etc.) with ease. You can also use the `BaseNoInternetDialog` class to easily create custom no Internet dialog.
+The library provides `NoInternetObserveComponent`, a simple [lifecycle-aware component](https://developer.android.com/topic/libraries/architecture/lifecycle). The purpose of the component is to provide an easy way to notify about the  Internet connection connectivity change. It gives a simple interface to connect with any elements (`Dialog`, `Snackbar`, etc.) with ease. You can also use the `BaseNoInternetDialog` class to easily create custom no Internet dialog.
 The library currently provides two `Dialogs` and a `Snackbar` out of the box for no Internet notification.
 
 ### No Internet Dialogs
@@ -70,13 +70,13 @@ dependencies {
 
 **Note 0.** Minimum SDK for this library is **API 21** (Android 5.0 Lollipop).
 
-**Note 1.** Your application have to use **AndroidX** to use this library.
+**Note 1.** Your application has to use **AndroidX** to use this library.
 
-**Note 2.** Your have to use **\*.MaterialComponents.\*** in you styles.
+**Note 2.** You have to use **\*.MaterialComponents.\*** in your styles.
 
 ### Finally
 
-Just initialize any of the `NoInternetDialog*` and/or `NoInternetSnackbar*` using the builder in `onCreate()`, thats all! :)
+Just initialize any of the `NoInternetDialog*` and/or `NoInternetSnackbar*` using the builder in `onCreate()`, that's all! :)
 
 The `NoInternetDialog*` and/or `NoInternetSnackbar*` will then automatically appear when no active Internet connection found and disappear otherwise.
 
@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity() {
         // ...
 
         // No Internet Dialog: Pendulum
-		NoInternetDialogPendulum.Builder(
+        NoInternetDialogPendulum.Builder(
             this,
             lifecycle
         ).apply {
@@ -184,7 +184,7 @@ public class Main2Activity extends AppCompatActivity {
         // ...
         
         // No Internet Dialog: Pendulum
-		NoInternetDialogPendulum.Builder builder = new NoInternetDialogPendulum.Builder(
+        NoInternetDialogPendulum.Builder builder = new NoInternetDialogPendulum.Builder(
             this,
             getLifecycle()
         );
@@ -290,18 +290,19 @@ We move our library from **jitpack.io** to **maven** repository. So no need to a
 
 We changed the file structures and re-right the whole library. So you have to do a little refactoring to use version 2 of the library. Just follow the samples, you will get it. Or add an issue if there any problem to migrate.
 
-The library now provides a simple lifecycle component for observing the Internet connection changes. It can be used with any kind of custom elements.
+The library now provides a simple lifecycle-aware component for observing the Internet connection changes. It can be used with any kind of custom elements.
 
 We provide two out of the box dialogs and a snackbar implementation.
 
 Notable other changes:
 
-* **New:** `NoInternetObserveComponent` lifecycle component added.
+* **New:** `NoInternetObserveComponent` lifecycle-aware component added.
 * **New:** Custom no Internet dialogs can be easily created using `BaseNoInternetDialog` class.
 * **Changed:** Previous `NoInternetDialog` now `NoInternetDialogPendulum`.
 * **New:** New `NoInternetDialogSignal` dialog added.
 * **Removed:** `NoInternetSnackbar` removed.
 * **New:** New `NoInternetSnackbarFire` added.
+* **New:** All the dialogs and snackbar are dark-mode ready.
 
 ### 1.1.4 & 1.1.5
 
