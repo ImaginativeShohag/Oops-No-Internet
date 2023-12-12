@@ -86,7 +86,7 @@ class NoInternetSnackbarFire(
                         if (isAirplaneModeOn) {
                             NoInternetUtils.turnOffAirplaneMode(context)
                         } else {
-                            NoInternetUtils.turnOnMobileData(context)
+                            NoInternetUtils.turnOnWifi(context)
                         }
                     }
                 }
